@@ -1,0 +1,116 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{
+    {"../img/"}
+    {"img/"}
+}
+
+\begin{document}
+$\varphi: \mathbb{R}^2\to\mathbb{R},\text{ np. }\quad\varphi(x_1,x_2) = \overset{\text{diagonalne}}{x_1^2} - \overset{\text{wyraz mieszany}}{3x_1x_2} + \overset{\text{diagonalne}}{x_2^2}$
+Narysować zbiór \[
+    \varphi^{-1}(p) = \left\{ \begin{bmatrix} x_1\\x^2 \end{bmatrix}: \varphi\left( \begin{bmatrix} x_1\\x_2 \end{bmatrix}  \right) = p \right\}
+.\]
+\[
+    \left[ \varphi \right] _{st} = \begin{bmatrix} 1&-\frac{3}{2}\\-\frac{3}{2}&1 \end{bmatrix}
+.\]
+Z twierdzenia Lagrange'a wiemy, że istnieją współrzędne na $\mathbb{R}^2$, w których macierz $\varphi$ jest diagonalna. Czyli istnieją $\psi_1,\psi_2\in\left(\mathbb{R}^2\right)^*$ oraz skalary  $\lambda_1,\lambda_2\in\mathbb{R}$ takie, że $\varphi = \lambda_1\psi_1^2 + \lambda_2\psi_2^2 + 0\psi_1\psi_2$ w tych współrzędnych macierz $\varphi$ jest równa $\begin{bmatrix} \lambda_1&0\\0&\lambda_2 \end{bmatrix}$.
+    \[
+        \varphi=(x_1-\frac{3}{2}x_2)^2 - \frac{5}{4}x_2^2, \psi_1 = x_1-\frac{3}{2}, \lambda_1 = 1, \psi_2 = x_2, \lambda_2 = -\frac{5}{4}
+    .\]
+    \[
+        \varphi = \psi_1^2 - \frac{5}{4}\psi_2^2,\quad \varphi^{-1}(1) = \left\{ \psi_1^2 - \frac{5}{4}\psi_2^2 = 1 \right\}
+    .\]
+    Ogólniej: $\varphi: V\to\mathbb{R}$ - forma kwadratowa $\varphi$ w pewnej bazie ma postać $\varphi = (\sqrt{\lambda_1} \psi_1)^2 + (\sqrt{\lambda_2} \psi_2)^2 +\ldots+(\sqrt{\lambda_r} \psi_r)^2 - (\sqrt{\lambda_{r+1}} \psi_{r+1})^2 - \ldots - (\sqrt{\lambda_{r+s}} \psi_{r+s})^2$, gdzie $\lambda_i > 0, i = 1,\ldots,r+s, \tilde \psi_i = \sqrt{\lambda_i} \psi_i $.
+
+    \begin{tw}
+        Niech $\varphi:V\to\mathbb{R}, (\Psi_i),(\Phi_j)$ bazy $V$ takie, że $\varphi = \psi_1^2 + \ldots + \psi_r^2 - \psi_{r+1}^2 - \ldots - \psi_{r+s}^2 = \phi_1^2 + \ldots + \phi_{r'}^2 - \phi_{r'+1}^2 - \ldots - \phi_{r'+s'}^2$. Wówczas $r = r' \quad\&\quad s = s'$
+    \end{tw}
+
+    \begin{dowod}
+        $r+s = r'+s' = rk \varphi$
+    \end{dowod}
+
+    Dla uproszczenia załóżmy, że $r+s = \dim V$.\\
+    Przypuśćmy na przykład, że $r > r'$.\\
+    Rozważmy układ równań liniowych:\\
+\[
+    \begin{cases}
+        \phi_1(v) = 0\\
+        \vdots\\
+        \phi_{r'}(v) = 0\\
+        \phi_{r'+1}(v) = 0\\
+        \vdots\\
+        \phi_{r+s}(v) = 0
+    \end{cases}
+.\]
+    Mamy $r'+s < n$ równań na wektor $v$ w przestrzeni wymiaru $n$. Istnieje wektor $V\neq 0$ spełniający ten układ równań. Zatem
+    \[
+        \varphi(v) = \psi_1(v)^1 + \ldots + \psi_r(v)^2 = -\phi_{r'+1}(v)^2 - \ldots - \phi_{r'+s'}(v)^2 = 0
+    .\]
+    W takim razie $\psi_1(v) = \psi_2(v) = \ldots = \psi_n(v) \implies v = 0 \quad\Box$
+
+    \begin{definicja}
+        Sygnaturą $sgn \varphi$ formy kwadratowej $\varphi: V\to\mathbb{R}_{-}$ nazywamy parę liczb $(r,s)$, gdzie $r$ i $s$ są liczbami dodatnich elementów macierzy $\varphi$ w bazie diagonalizującej.
+    \end{definicja}
+    \begin{przyklad}
+
+        \begin{align*}
+            &sgn (x_1^1 - 3x_1x_2 + x_2^2 ) = (1,1)\\
+            &sgn (x_1^2) = (1,0)\\
+            &sgn(-x_1^1) = (0,1)
+        .\end{align*}
+
+    \end{przyklad}
+
+    \subsection{Diagonalizacja formy kwadratowej metodą Jacobiego}
+    $\varphi: V\to\mathbb{R}$ - forma kwadratowa $\left[ \varphi_{ij} \right] $ - macierz w bazie $\mathcal{E} = \left( e_1,\ldots,e_n \right) .$\\
+    $Q:V\times V \to\mathbb{R}$ - symetryczna forma 2-liniowa $\varphi_{ij} = Q(e_i,e_j)$ \\
+    $D_l = \det \begin{bmatrix} \varphi_{11}&\ldots&\varphi_{1l}\\
+    \vdots&\ddots&\vdots\\\varphi_{l2}&\ldots&\varphi_{ll}\end{bmatrix} \underset{\text{zał}}{\neq} 0$
+
+    Rozważmy wektory $f_1,\ldots,f_n$, gdzie $f_1 = e_1 \&$ dla $i>1,\quad f_i = \frac{1}{D_{i-1}} \det \begin{bmatrix} \varphi_{11}&\ldots&\varphi_{1i}\\ \vdots \\ \varphi_{i-n, 1}&\ldots&\varphi_{i-n, i}\\ e_1& \ldots& e_i \end{bmatrix}$
+    \begin{przyklad}
+        \[
+            f_2 = \frac{1}{D_1} \det \begin{bmatrix} \varphi_{11}&\varphi_{12}\\e_1&e_2 \end{bmatrix} = \frac{1}{e_{11}}(\varphi_{11}e_2 - \varphi_{12}e_1) = e_2 - \frac{\varphi_{12}}{\varphi_{11}}e_1
+        .\]
+        \[
+            f_3 = \frac{1}{D_2} \det \begin{bmatrix} \varphi_{11}&\varphi_{12}&\varphi_{13}\\\varphi_{21}&\varphi_{22}&\varphi_{23}\\e_1&e_2&e_3 \end{bmatrix} = e_3 - \frac{1}{D_2} \det \begin{bmatrix} \varphi_{11}&\varphi_{13}\\\varphi_{21}\varphi_{23} \end{bmatrix} e_2 + \frac{1}{D_2}\det \begin{bmatrix} \varphi_{12}&\varphi_{13}\\\varphi_{22}&\varphi_{23} \end{bmatrix}, \text{ itd.}
+        \]
+    Widać, że $f_i = e_i + x_i, x_i\in \left< e_1,\ldots,e_{i-1}\right>$. Zatem $\mathcal{F} = \left( f_1,\ldots,f_n \right) $ jest bazą $V$.
+    \end{przyklad}
+    \begin{tw}
+        Baza $\mathcal{F}$ diagonalizuje $\varphi$ oraz
+        \[
+         \left[ \varphi \right] _\mathcal{F} = diag \left( D_1, \frac{D_2}{D_1},\ldots, \frac{D_n}{D_{n-1}} \right)
+        .\]
+    \end{tw}
+    \begin{przyklad}
+        $\left[ \varphi \right] _{st} = \begin{bmatrix} 1&-\frac{3}{2}\\ -\frac{3}{2}&1 \end{bmatrix} ,\quad D_1 = 1, D_2 = -\frac{5}{4}, \mathcal{F} = \left( \begin{bmatrix} 1\\0 \end{bmatrix} , \begin{bmatrix} \frac{3}{2}\\1 \end{bmatrix}  \right) $
+    \end{przyklad}
+    \begin{dowod}
+        Naszym celem jest obliczenie $Q(f_i,f_j)$.\\
+        Załóżmy, że $j<i$ i obliczmy
+        \[
+            Q(f_i,e_j) = \frac{1}{D_{i-1}}\det \begin{bmatrix} \varphi_{11}&\ldots&\varphi_{1i}\\
+            \varphi_{j1}&\ldots&\varphi_{ji}\\
+            \varphi_{i-1,1}&\ldots&\varphi_{i-1,i}\\
+            \varphi_{j_1}&\ldots&\varphi_{ji}\end{bmatrix} \leftarrow j = 0
+        .\]
+        Dla $j=1 \quad\quad Q(f_i,e_i) = \frac{D_i}{D_{i-1}}$\\
+        Zatem $\left[ \varphi \right] _{\mathcal{F};i;j} = Q(f_i,f_j) = \begin{cases}
+            Q(f_i,e_j + x_j) = 0 &j<i\\
+            Q(f_i,e_i + x_i) = Q(f_i,e_i) = \frac{D_i}{D_{i-1}} &j = i
+        \end{cases}\quad\Box$
+    \end{dowod}
+
+    Zauważmy, że $\left. \varphi \right|_{<e_1,\ldots,e_i>} $ ma rząd $ = i$ gdyż jest dodatnio określona $\iff$ niezdegenerowana. Stąd:\\
+        \[
+            \det \left( \left[ \left. \varphi\right|_{<e_1,\ldots,e_n>} \right] _{(e_1,\ldots,e_i)} \right) = \det \begin{bmatrix} \varphi_{11}&\ldots&\varphi_{1i}\\ \vdots&\ddots&\vdots \\ \varphi_{i1}&\ldots&\varphi_{ii}\end{bmatrix} = D_i
+        .\]
+        \[
+            sgn \varphi = (n,0),\quad \left[ \varphi \right] _\mathcal{F} = diag \left( D_1, \frac{D_2}{D_1},\ldots,\frac{D_{n}}{D_{n-1}} \right)
+        .\]
+        Zatem $D_1 > 0, \frac{D_2}{D_1}>0, \ldots, \frac{D_n}{D_{n-1}} > 0$, a to jest spełniony tylko gdy $D_1>0, D_2>0,\ldots,D_n>0\quad \Box$
+
+
+
+\end{document}

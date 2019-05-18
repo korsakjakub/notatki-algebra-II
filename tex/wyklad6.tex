@@ -1,0 +1,95 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{
+    {"../img/"}
+    {"img/"}
+}
+
+\begin{document}
+\begin{przyklad}
+\begin{align*}
+    &A = \begin{bmatrix} 0&2&3\\1&3&5\\-1&-2&-4 \end{bmatrix} , t\in \mathbb{R},\quad e^{tA}\in M_{3\times 3}(\mathbb{R})\\
+    &e^{tA} = aA^2 + bA + c \mathbb{I}, \quad \begin{bmatrix} e^t\\e^{-t}\\te^{-t} \end{bmatrix} = \underbrace{\begin{bmatrix} 1&1&1\\1&-1&1\\2&-1&0 \end{bmatrix}}_{B} \begin{bmatrix} a\\b\\c \end{bmatrix}\\
+    &\begin{bmatrix} a\\b\\c \end{bmatrix} = B^{-1}\begin{bmatrix} e^{t}\\e^{-t}\\te^{-t} \end{bmatrix} = \frac{1}{4} \begin{bmatrix} 1&-1&2\\2&-2&0\\1&3&-2 \end{bmatrix} \begin{bmatrix} e^{t}\\e^{-t}\\te^{-t} \end{bmatrix} = \frac{1}{4} \begin{bmatrix} e^{t}+(2t)e^{-t}\\2(e^t-e^{-t})\\e^t + (3 - 2t)e^{-t} \end{bmatrix}\\
+    &A^2 = \begin{bmatrix} -1&0&-2\\-2&1&-2\\2&0&3 \end{bmatrix}\\
+    &e^{tA} = \frac{1}{4}\left( (e^t+(2t-1)e^{-t})\begin{bmatrix} -1&0&-2\\-2&1&-2\\2&0&3 \end{bmatrix} + 2(e^t - e^{-t})\begin{bmatrix} 0&2&3\\1&3&5\\-1&-2&-4 \end{bmatrix} + e^t + (3-2t)e^{-t} \mathbb{I} \right) =\\
+    &= \sum_{n=0}^{\infty} \frac{t^nA^n}{n!}
+.\end{align*}
+
+\begin{align*}
+    &w_{A}(\lambda) = (1-\lambda)(1+\lambda)^2\\
+    &V_1 = ker(A- 1 \mathbb{I}) = \left<\underbrace{\begin{bmatrix} -1\\-2\\1 \end{bmatrix}}_{\substack{\text{wektor własny }\\ \text{o wartości własnej $=1$ }}}  \right>\\
+    &V_{-1} = ker(A + 1 \mathbb{I})^2 = ker \begin{bmatrix} 0&4&4\\0&8&8\\0&-4&-4 \end{bmatrix} = \left<\begin{bmatrix} 1\\0\\0 \end{bmatrix}, \begin{bmatrix} 1\\1\\-1 \end{bmatrix}   \right>\\
+    &(A+1\mathbb{I})\begin{bmatrix} 1\\0\\0 \end{bmatrix} = \begin{bmatrix} 1\\0\\0 \end{bmatrix} + \begin{bmatrix} 1\\0\\0 \end{bmatrix} = \begin{bmatrix} 1\\1\\-1 \end{bmatrix}
+.\end{align*}
+
+Rozważmy bazę $\mathcal{E} = \left\{ \begin{bmatrix} -1\\-2\\1 \end{bmatrix} ,\begin{bmatrix} 1\\1\\-1 \end{bmatrix} , \begin{bmatrix} 1\\0\\0 \end{bmatrix}  \right\}$
+\begin{align*}
+    [A]_{\mathcal{E}}^{\mathcal{E}} = \begin{bmatrix} 1 & 0 & 0\\ 0 & -1 & 1\\ 0 & 0 & -1\end{bmatrix} \text{ - postać jordanowska macierzy}
+.\end{align*}
+\end{przyklad}
+\begin{align*}
+    &A\in End(V),\quad Sp(A) = \left\{ \lambda_1,\ldots,\lambda_k \right\} ,\quad n_i\text{ - krotności }\lambda_i\\
+    &V = \bigoplus V_{\lambda_i},\quad V_{\lambda_i} = ker (A - \lambda_i \mathbb{I})^{n_i}\\
+    &A = \bigoplus A_i\text{, gdzie } A_i\in End(V_{\lambda_i}) \text{ taki, że }\quad A_i = A |_{V_{\lambda_i}}
+.\end{align*}
+Zauważmy,że \[
+    A_i = (A_i - \lambda_i \mathbb{I}_{V_{\lambda_i}} + \lambda_i \mathbb{I}_{V_{i}}
+.\]
+gdzie \[
+    (A_i - \lambda_i \mathbb{I}_{V_{\lambda_i}})^{n_i} = 0
+.\]
+\begin{definicja}
+    Jeżeli $N\in End(W)$ jest taki, że $N^q = 0$ (dla pewnego $q$), to mówimy, że $N$ jest nilpotentny. Najmniejsze takie $q$ nazywamy stopniem nilpotentności $N$.
+\end{definicja}
+\begin{przyklad}
+    \[
+        W = \mathbb{R}_n [.],\quad N = \frac{d}{dx} \text{ - nilpotent st. n+1}
+    .\]
+    \begin{align*}
+        &\left\{ n!, n! x, \binom{n}{2} x^2,\ldots, \binom{n}{n-1}x^{n-1}, \binom{n}{n}x^n \right\}\\
+        &[N]_{\mathcal{E}}^{\mathcal{E}} = \begin{bmatrix} 0&1&0&\ldots&0\\0&0&1&\ldots&0\\ \vdots &\vdots &\vdots &\ddots &1 \\0&0&0&0&0\end{bmatrix}
+    .\end{align*}
+\end{przyklad}
+\begin{definicja}
+    Klatką jordanowską nazywamy macierz postaci \[
+        \begin{bmatrix}
+        \lambda&1&0\\
+               &\ddots&1\\
+               0&&\lambda
+         \end{bmatrix}
+    .\]
+\end{definicja}
+\begin{tw}
+    Niech $A\in End(W)$, gdzie $w$ jest nad $\mathbb{C}$, $dim V < \infty$. Wówczas istnieje baza przestrzeni  $W$, w której macierz operatora $A$ jest blokowa, a jej bloki są klatkami jordanowskimi własnymi na diagonali.
+\end{tw}
+\begin{dowod}
+    Skoro $A = \bigoplus A_i,\quad A_i = \lambda_i \mathbb{I}_{V_i}+N_I$, $N_i = (A_i - \lambda_i \mathbb{I}_{V_i})$ - jest nilpotentny stopnia $n_i$, to wystarczy twierdzenie udowodnić dla operatorów nilpotentnych. Niech $N: W\to W$ - nilpotentny stopdnia $q$ i $N^q = 0$.\\
+    $\underset{i\in \left\{ 0,\ldots,q \right\} }{\forall} $ niech $W_i = ker N^i$.\\
+    \[
+        \left\{ 0 \right\} = W_0 \subset W_1 \subset \ldots \subset W_{q-1} \subset W_q = W
+    .\]
+    ustalmy $w\in W$. Mówimy, że $w$ ma wysokość $i$, jeżeli $N^ix$ = 0 oraz $N^{i-1}x \neq 0$.\\
+    Zauważmy, że jeżeli $x$ ma wysokość równą $i$, to układ wektorów \[
+        \left\{ x,Nx,\ldots,N^{i-1}x \right\}
+    .\] jest liniowo niezależny.\\
+    Rzeczywiście, $\alpha_0x+\alpha_1Nx + \ldots + \alpha_{i-1}N^{i-1}x = 0 |\underset{\text{działamy }\implies x_0}{N^{i-1}}$\\
+    $\alpha_1Nx + \ldots + \alpha_{i-1}N^{i-1}x = 0 |\underset{\text{działamy }\implies\alpha_1 = 0}{N^{i-2}}$ itd.\\
+    Rozważmy tym razem podprzestrzeń $ker N \cap Im N^{j-1} \subset W$ i zauważmy, że $dim ker N_1 Im N^{j-1} = dim W_j - dim W_{j-1}$.\\
+W tym celu zdefiniujmy operator $F: W_j \to ker N \cap Im N^{j-1}$ wzorem $F x = N^{j-1}x$.\\
+Skoro $im F = ker N \cap Im N^{j-1}$ oraz $ker F = W_{j-1}$, to \\
+$dim W_j = dim im F + dim ker F = dim (ker N\cap Im N^{j-1}) + dim W_{j-1}$\\
+ \[
+     ker F = W_{j-1} \text{ - oczywiste. }
+.\]
+\begin{align*}
+    &Im F = ker N \cap Im N^{j-1}: y\in ker N \cap Im N^{j-1} \implies \underset{x\in Im N^{j-1}}{\exists} : y = N^{j-1}x \text{ oraz } Ny = 0\\
+    &\text{to w takim razie } N^{j}x = 0\implies x\in W_j \text{ oraz } y = N^{j-1}x = Fx\\
+    &ker N \cap Im N^{q-1}\subset ker N \cap Im N^{q-2}\subset \ldots \subset ker N\\
+.\end{align*}
+Niech $\left\{ f_1,\ldots,f_m \right\} m=dim ker N$ będzie bazą $ker N$ zgodną z wzrastającym ciągiem podprzestrzeni. Wektor $f_1\in ker N\cap Im N^{q-1}$ jest końcówką serii wektorów długości $q$.\\
+Oznaczmy $f_i=e_{i1}$ i niech $h(i)$ oznacza wysokość odpowiedniej serii w powyższym sensie. Okazuje się, że
+\[
+    \left\{ e_{ij}: i\in 1,..,m, j\in\left\{ 1,\ldots,h(i) \right\}  \right\} \text{ jest bazą }W_i \quad\Box
+.\]
+\end{dowod}
+\end{document}

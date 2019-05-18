@@ -1,0 +1,138 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{
+    {"../img/"}
+    {"img/"}
+}
+
+\begin{document}
+    \subsection{
+        Formy dwuliniowe na przestrzeniach wektorowych
+    }
+
+    Przypomnienie:(definicja)
+    \begin{definicja}
+        $V$ - przestrzeń wektorowa, $\dim V < \infty, \mathbb{F} (=\mathbb{R} \text{ lub } \mathbb{C})$\\
+        $V^* = L(V,\mathbb{F}) = \left\{ \phi: V\to \mathbb{F}, \phi \text{ - liniowe } \right\} $. \\
+        Terminologia: $\phi$ jest formą liniową
+    \end{definicja}
+    \begin{przyklad}
+        $V = \mathbb{R}^3, \phi \left( \begin{bmatrix} x^1\\x^2\\x^3 \end{bmatrix}  \right) = x^1 - 2x^2 + x^3 $
+    \end{przyklad}
+    \begin{definicja}
+        Odwzorowanie $\Omega: V \times V \to \mathbb{F}$ nazywamy formą dwuliniową na $V$, jeżeli:\\
+        \begin{itemize}
+            \item $\Omega(v,\lambda_1 \tilde v_1 + \lambda_2 \tilde v_2) = \lambda_1 \Omega(v,\tilde v_1) + \lambda_2 \Omega (v,\tilde v_2) \underset{v,\tilde v_1, \tilde v_2 \in V}{\forall} \underset{\lambda_1,\lambda_2\in \mathbb{F}}{\forall} $
+            \item $\Omega(\lambda_1 v_1 + \lambda_2 v_2, \tilde v) = \lambda_1 \Omega(v_1,\tilde v) + \lambda_2 \Omega(v_2,\tilde v) \underset{v_1,v_2,\tilde v\in V}{\forall} \underset{\lambda_1,\lambda_2\in \mathbb{F}}{\forall} $
+        \end{itemize}
+    \end{definicja}
+    \begin{przyklad}
+        $V = \mathbb{R}^2$. Wszystkie formy 2-liniowe na $V$ są postaci \[
+            \Omega\left (\begin{bmatrix} x^1\\x^2 \end{bmatrix}, \begin{bmatrix} y^1\\y^2 \end{bmatrix} \right ) = a_{11}x^1y^1 + a_{12}x^1y^2 + a_{21}x^2y^1 + a_{22}x^2y^2
+        .\] dla pewnych $a_{ij}\in\mathbb{R}$. Zauważmy, że
+        \[
+            \Omega \left( \begin{bmatrix} x^1\\x^2 \end{bmatrix} ,\begin{bmatrix} y^1\\y^2 \end{bmatrix}  \right) = \left[ x^1,x^2 \right] \begin{bmatrix} a_{11}&a_{12}\\ a_{21}&a_{22} \end{bmatrix} \begin{bmatrix} y^1\\y^2 \end{bmatrix}
+        .\]
+    \end{przyklad}
+    \begin{definicja}
+        Niech $\mathcal{E}=\left( e_1,\ldots,e_n \right) $ będziebazą przestrzeni $V$. Wówczas macierz $n\times n$ postaci $\left[ \Omega (e_{i},e_{j} \right]_{i,j\in 1,\ldots,n}$ nazywamy macierzą formy dwuliniowej w bazie $\mathcal{E}$ i oznaczamy $\left[ \Omega \right]_\mathcal{E}$
+    \end{definicja}
+    \begin{przyklad}
+        \[
+            V = \mathbb{R}^2, \mathcal{E}=\left\{ \begin{bmatrix} 1\\0 \end{bmatrix} , \begin{bmatrix} 0\\1 \end{bmatrix}  \right\}, \Omega \text{ - jak poprzednio} \left[ \Omega \right]_\mathcal{E} = \begin{bmatrix} a_{11}&a_{12}\\a_{21}&a_{22} \end{bmatrix}
+        .\]
+        \begin{large}
+            Uwaga:
+        \end{large}
+        Jeśli $v\in V$ ma w bazie $\mathcal{E}$ współrzędne $\begin{bmatrix} \lambda^1\\ \vdots\\ \lambda^n \end{bmatrix} $,\\
+        a $\tilde v\in V$ ma w bazie $\mathcal{E}$ współrzędne $\begin{bmatrix} \tilde \lambda^1\\ \vdots \\ \tilde \lambda^n \end{bmatrix} $, to \[
+            \Omega (v,\tilde v) = \Omega (\sum_i \lambda^i e_i, \sum_j \tilde \lambda^j e_j) = \sum_{i,j} \lambda^i \Omega (e_i,e_j)\tilde \lambda^j = \left[ \lambda^1,\ldots,\lambda^n \right] \left[ \Omega \right]_\mathcal{E} \begin{bmatrix} \tilde \lambda^1\\ \vdots\\ \tilde\lambda^n \end{bmatrix}
+        .\]
+    \end{przyklad}
+
+    \subsection{Reguła transformacyjna dla form dwuliniowych}
+    Niech $\mathcal{E}' = (\tilde e_1,\ldots,\tilde e_n)$ będzie bazą $ V$. Jeżeli $\tilde e_i = \sum_i a^j_i e_j$, to $\left[ \Omega \right]_{\mathcal{E}'}$ jest dana wzorem
+    \begin{equation}\label{eq:transf}
+        \Omega(\tilde e_i, \tilde e_j) \overset{\text{East}}{\underset{\text{conv.}}{=}} \Omega (a^k_i e_k, a^l_j e_l) = a^k_i \Omega (e_k, e_l)a^l_j = \left[ a^k_i \right]^T \left[ \Omega \right]_{\mathcal{E},k,l}\left[ a^l_j \right]
+    \end{equation}
+    Zauważmy $\left[ a^j_i \right] = \left[ Id \right]_{\mathcal{E}'}^\mathcal{E}$ i wzór \ref{eq:transf} zapisuje się w postaci
+    \[
+        \left[ \Omega \right] _{\mathcal{E}'} = \left( \left[ Id \right] _{\mathcal{E}'}^\mathcal{E} \right) ^T \left[ \Omega \right] _\mathcal{E} \left[ Id \right] _{\mathcal{E}'}^\mathcal{E}
+    .\]
+
+    \begin{przyklad}
+        \[
+        V = \mathbb{R}^2, \Omega\left(\begin{bmatrix} x^1\\x^2 \end{bmatrix} , \begin{bmatrix} y^1\\y^2 \end{bmatrix} \right) = x^1y^1 + x^2y^2
+        .\]
+
+        $\left[ \Omega \right] _{\text{kan}} = \begin{bmatrix} 1&0\\0&1 \end{bmatrix}$. Rozważmy bazę $\mathcal{E}' = \left( \begin{bmatrix} 1\\0 \end{bmatrix} , \begin{bmatrix} 1\\1 \end{bmatrix}  \right) $
+
+        \[
+            \left[ \Omega \right] _\mathcal{E} = \begin{bmatrix} 1&1\\1&2 \end{bmatrix} \overset{?}{=} \begin{bmatrix} 1&0\\1&1 \end{bmatrix} \begin{bmatrix} 1&0\\0&1 \end{bmatrix} \begin{bmatrix} 1&1\\0&1 \end{bmatrix} = \begin{bmatrix} 1&1\\1&2 \end{bmatrix}
+        .\]
+    \end{przyklad}
+
+    \subsection{Reguła transformacyjna}
+
+    \[
+        \left[ \Omega \right] _{\mathcal{E}'} = A^T \left[ \Omega \right] _\mathcal{E} A
+    .\] gdzie $A = \left[ Id \right] _{\mathcal{E}'}^\mathcal{E}$ \\
+    Zauważmy, że $A\in M_{n \times n}(\mathbb{F})$ jest odwracalna oraz $A^{-1} = \left[ Id \right] _{\mathcal{E}}^{\mathcal{E}'}$. W szczególności $\det \left[ \Omega \right] _{\mathcal{E}'} = \det(A)^2 \det \left[ \Omega \right] _\mathcal{E}$ i skoro $\det A \neq 0$, to $\det \left[ \Omega \right] _\mathcal{E} = 0 \iff \det \left[ \Omega \right] _{\mathcal{E}'} = 0$.
+
+    \begin{definicja}
+        Mówimy, że $\Omega$ jest niezdegenerowana, gdy w pewnej bazie (a wówczas w każdej) $\det \left[ \Omega \right] _\mathcal{E} \neq 0$
+    \end{definicja}
+
+    \begin{large}
+        Przypomnienie:
+    \end{large}
+    Jeśli $B = CDE$, gdzie  $B,\ldots,E\in M_{n \times n}(\mathbb{F})$ oraz $C$ i  $E$ są odwracalne, to $rk(B) = rk(D)$\\
+     \[
+         rk(B) = \dim im(CDE) = \dim(CDE \mathbb{F}^n), \dim(C D \mathbb{F}^n) = \dim D \mathbb{F}^n = rk D
+    .\]
+    Zatem $rk \left[ \Omega \right] _\mathcal{E} = rk \left[ \Omega \right] _{\mathcal{E}'}$
+
+    \begin{definicja}
+        Rzędem formy $\Omega$ nazywamy rząd macierzy $\left[ \Omega \right] _\mathcal{E}$ w dowolnej bazie $\mathcal{E}$ przestrzeni wektorowej $V$.
+    \end{definicja}
+
+    \begin{przyklad}
+        (a)
+        $V = \mathbb{R}_n [.]$ i niech $\Omega(w_1,w_2) = \int_0^1 w_1(t)w_2(t)$. Wykazać, że $\Omega$ jest niezdegenerowana i ma rząd $n+1$ \\
+        (b) $\psi(w_1,w_2) = \sum_{i=0}^k w_1(i)w_2(i)$. Wykazać, że rząd $\psi$ jest równy $\min(k+1,n+1)$
+    \end{przyklad}
+
+    Forma dwuliniowa $\Omega: V \times V \to \mathbb{F}$ pozwala zdefiniować odzworowanie $T_\Omega : V\to V^*$ takie, że \[
+        \left < T_\Omega(v), \tilde v \right > = \Omega(v,\tilde v)
+    .\]
+
+    Zauważmy, że \[
+        \left[ \Omega \right] _{\mathcal{E},i,j} = \Omega(e_i,e_j) = \left < T_\Omega (e_i),e_j \right > = \left[ T_\Omega \right] _{\mathcal{E},i,j}^{\mathcal{E}^*}
+    .\]
+    w szczególności $rk \Omega = rk( T_\Omega) = n+1$
+
+    \begin{definicja}
+        Mówimy, że forma dwuliniowa $\Omega: V \times V\to \mathbb{F}$ jest
+        \begin{itemize}
+            \item symetryczna, jeśli $\Omega(v,\tilde v) = \Omega(\tilde v, v)$
+            \item antysymetryczna, jeśli $\Omega(v,\tilde v) = - \Omega(\tilde v, v) \underset{v,\tilde v\in V}{\forall} $
+        \end{itemize}
+    \end{definicja}
+    \begin{przyklad}
+        \begin{itemize}
+            \item $\Omega: \psi$ na $\mathbb{R}_n [.]$ jak wyżej sąsymetryczne.
+            \item $\Xi\pm (w,\tilde w) = w(0)\tilde w(1) \pm \tilde w(0) w(1)$ dla $\begin{matrix}- \text{ antysymetria}\\ + \text{ symetria}\end{matrix}$
+        \end{itemize}
+    \end{przyklad}
+
+    \begin{stw}
+        Dla każdego $\Omega$ istnieje  $\Omega_a$ i $\Omega_s$, gdzie $\Omega_s$ - symetryczna, $\Omega_a$ - antysymetryczna oraz
+        \[
+        \Omega = \Omega_a + \Omega_s
+        .\] Ponadto $\Omega_a, \Omega_s$ - jednoznacznie wyznaczone
+    \end{stw}
+    \begin{dowod}
+        Sprawdzić, że $\Omega_a(v,\tilde v) := \frac{1}{2}(\Omega(v,\tilde v) - \Omega (\tilde v,v)); \Omega_s = \frac{1}{2}(\Omega(v,\tilde v),\Omega(\tilde v, v))$
+    \end{dowod}
+
+
+\end{document}
