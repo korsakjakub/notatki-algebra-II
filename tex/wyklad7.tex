@@ -5,123 +5,91 @@
 }
 
 \begin{document}
-    $V$ - wektorowa nad $\mathbb{R}$ lub $\mathbb{C}$. Na tej przestrzeni mamy iloczyn skalarny $\left< v_1 | v_2 \right> \in \mathbb{F}$. Wektory ortogonalne: $v_1 \perp v_2$, jeśli $\left< v_1 | v_2 \right> = 0$
-    \begin{przyklad}
-        na przestrzeni $\mathbb{C}^n$ wprowadzamy iloczyn skalarny $\left< u|w \right> = \sum_{i=1}^n \overline{u}_i w_i$, gdzie $\overline{u}$ - sprzężenie zespolone.
-    \end{przyklad}
-    Mówimy, że baza $\mathcal{E} = \left\{ v_1,\ldots,v_n \right\} $ przestrzeni $V$ jest ortonormalna, gdy $\left< v_i|v_j \right> = 0, i\neq j$.\\
-    Notacja $\Vert v \Vert = \left< v|v \right>^{\frac{1}{2}}$ - długość wektora $v$.
+\begin{przyklad}
+\begin{align*}
+    &A = \begin{bmatrix} 0&2&3\\1&3&5\\-1&-2&-4 \end{bmatrix} , t\in \mathbb{R},\quad e^{tA}\in M_{3\times 3}(\mathbb{R})\\
+    &e^{tA} = aA^2 + bA + c \mathbb{I}, \quad \begin{bmatrix} e^t\\e^{-t}\\te^{-t} \end{bmatrix} = \underbrace{\begin{bmatrix} 1&1&1\\1&-1&1\\2&-1&0 \end{bmatrix}}_{B} \begin{bmatrix} a\\b\\c \end{bmatrix}\\
+    &\begin{bmatrix} a\\b\\c \end{bmatrix} = B^{-1}\begin{bmatrix} e^{t}\\e^{-t}\\te^{-t} \end{bmatrix} = \frac{1}{4} \begin{bmatrix} 1&-1&2\\2&-2&0\\1&3&-2 \end{bmatrix} \begin{bmatrix} e^{t}\\e^{-t}\\te^{-t} \end{bmatrix} = \frac{1}{4} \begin{bmatrix} e^{t}+(2t)e^{-t}\\2(e^t-e^{-t})\\e^t + (3 - 2t)e^{-t} \end{bmatrix}\\
+    &A^2 = \begin{bmatrix} -1&0&-2\\-2&1&-2\\2&0&3 \end{bmatrix}\\
+    &e^{tA} = \frac{1}{4}\left( (e^t+(2t-1)e^{-t})\begin{bmatrix} -1&0&-2\\-2&1&-2\\2&0&3 \end{bmatrix} + 2(e^t - e^{-t})\begin{bmatrix} 0&2&3\\1&3&5\\-1&-2&-4 \end{bmatrix} + e^t + (3-2t)e^{-t} \mathbb{I} \right) =\\
+    &= \sum_{n=0}^{\infty} \frac{t^nA^n}{n!}
+.\end{align*}
 
-    \begin{stw}
-        Jeśli $\mathcal{E}$ jest bazą ortonormalną oraz $v = \sum_{i=1}^n \alpha_i v_i$, to $\alpha_i = \left< v_i | v \right>$.
-    \end{stw}
-    \begin{dowod}
-        $\left< v_i | v \right> = \left< v_i | \sum_{j=1}^n \alpha_j v_j \right> = \sum_j \alpha_j \left< v_i | v_j \right> = \alpha_i$
-    \end{dowod}
-    \textit{Uwaga: Układ wektorów ortonormalnych jest liniowo niezależny.}\\
-    $f_1, \ldots, f_k$ - układ ortonormalny: $\sum_{j=1}^k \alpha_j f_j = 0$, to $\alpha_i = \left< f_i | \sum_{j=1}^k \alpha_j f_j \right> = 0$
-    \subsection{Ortogonalizacja Gramma-Schmidta}
-    Niech $\left\{ e_1,\ldots,e_n \right\} $ będzie bazą $V$.\\
-    Definiujemy \underline{indukcyjnie} układ (niezerowych) wektorów:\\
-    $f_1 = e_1$; $f_1,\ldots,f_k$ - mamy to \[f_{k+1} = e_{k+1} - \sum_{j=1}^k \frac{\left< f_j | e_{k+1} \right>f_j}{\Vert f_j \Vert ^2}.\]
-\textit{Uwaga: (1)}\\
-$\left<f_1,\ldots,f_k \right> = \left<e_1,\ldots,e_k \right>$
-    \begin{dowod}
-        (indukcyjny)\\
-        Dla $k=1$ - oczywiste.\\
-        $k\implies k+1:$
-        \[
-            \left<f_1,\ldots,f_{k+1} \right> = \left<e_1,\ldots,e_k,f_{k+1} \right> = \left<e_1,\ldots,e_{k+1} \right>
-        .\]
-        W szczególności $\underset{k=1,\ldots,n}{\forall} f_k \neq 0$
-    \end{dowod}
+\begin{align*}
+    &w_{A}(\lambda) = (1-\lambda)(1+\lambda)^2\\
+    &V_1 = ker(A- 1 \mathbb{I}) = \left<\underbrace{\begin{bmatrix} -1\\-2\\1 \end{bmatrix}}_{\substack{\text{wektor własny }\\ \text{o wartości własnej $=1$ }}}  \right>\\
+    &V_{-1} = ker(A + 1 \mathbb{I})^2 = ker \begin{bmatrix} 0&4&4\\0&8&8\\0&-4&-4 \end{bmatrix} = \left<\begin{bmatrix} 1\\0\\0 \end{bmatrix}, \begin{bmatrix} 1\\1\\-1 \end{bmatrix}   \right>\\
+    &(A+1\mathbb{I})\begin{bmatrix} 1\\0\\0 \end{bmatrix} = \begin{bmatrix} 1\\0\\0 \end{bmatrix} + \begin{bmatrix} 1\\0\\0 \end{bmatrix} = \begin{bmatrix} 1\\1\\-1 \end{bmatrix}
+.\end{align*}
 
-        \textit{Uwaga (2)}\\
-        $f_i \perp f_j$ dla $i \neq j$.
-        \begin{dowod}
-            (indukcyjny)\\
-            Przypuśćmy, że $i<j$.\\
-            \begin{align*}
-                &\left< f_i | f_j \right> = \left< f_i | e_j - \sum_{l=1}^{j-1} \frac{\left< f_l | e_j \right> f_l}{\Vert f_l \Vert ^2} \right> =\\
-                &=\left<f_i|e_j \right> - \sum_{l=1}^{j-1} \frac{\left<f_l|e_j \right>}{\Vert f_l \Vert ^2} \left<f_i | f_l \right> =\\
-                &=  \left<f_i|e_j \right> - \frac{\left<f_i|e_j \right>}{\Vert f_i \Vert ^2} \left<f_i | f_i \right> = 0
-            .\end{align*}
-            Kładąc $h_i = \frac{f_i}{\Vert f_i \Vert }$, dostaję bazę ortonormalną $\left\{ h_1,\ldots,h_n \right\} \quad\Box$
-        \end{dowod}
-        \begin{przyklad}
-            Rozważamy przestrzeń wielomianów $V = \mathbb{R}[\times] = \left\{ \alpha_0 + \alpha_1x : \alpha_i \in \mathbb{R} \right\} $.\\
-            $\mathcal{F} = \left\{ 1,x \right\} $, $\left<v_1|v_2 \right> = \int_0^1 v_1(x)v_2(x)dx.$ $\quad v_1 = \alpha_1 + \alpha_2x, v_2 = \beta_1 + \beta_2x$.\\
-$\left<1|x \right> = \int_0^1 1 \cdot x dx = \frac{1}{2}$ \\
-$f_1 = 1,\quad f_2 = x - \frac{\left<1|x \right> \cdot 1}{\Vert 1 \Vert ^2} = x-\frac{1}{2} \implies f_1\perp f_2$.\\
-Czy $h_1$ jest unormowane? $h_1 = \frac{1}{\Vert 1 \Vert } = 1 = f_1$.\\
-$h_2 = \frac{f_2}{\Vert f_2 \Vert } = \sqrt{12} (x-\frac{1}{2})$. $\quad \Vert f_2 \Vert ^2 = \int_0^1 (x-\frac{1}{2})^2 dx = \int_0^1 (x^2 - x + \frac{1}{4})dx = \frac{1}{12}$
-        \end{przyklad}
-
-        \subsection{Rzut ortogonalny}
-        Ustalmy podprzestrzeń $E$ przestrzeni $V$. Niech $E^\perp = \left\{ v\in V: \underset{e\in E}{\forall} v\perp e \right\}, E^\perp $ - jest poprzestrzenią wektorową.
-        Zauważmy, że $E \cap E^\perp = \{0\}: v\in E \cap E^\perp$, to $v\perp v: \left<v|v \right> = 0$.\\
-        Ponadto, $E+E^\perp = V$. Ustalmy bazę ortonormalną podprzestrzeni $E = \left\{ e_1,\ldots,e_k \right\} .$\\
-        Wtedy $v = \underbrace{\sum_{i=1}^k \left<e_i | v \right>e_i}_{\in E} + \left(v- \sum_{i=1}^k \left<e_i|v\right>e_i\right)$.\\
-        Zauważmy $\left<e_l | v - \sum_{i=1}^k \left<e_i|v \right>e_i\right> = \left<e_l | v \right> - \left<e_l | v \right> = 0$.
-        W takim razie
-        \[
-            v - \sum_{i=1}^k \left<e_i|v \right>e_i \in E^\perp
-        .\]
-        Wniosek: $V = E \bigoplus  E^\perp$. Rzut na $E$ wzdłuż $E^\perp$ nazywamy rzutem ortogonalnym na $E$ i oznaczamy $P_E$.\\
-        Działa tak: $P_E v = \sum_{i=1}^k \left<e_i | v \right>e_i.$. $E^\perp$ nazywamy dopełnieniem ortogonalnym przestrzeni $E^{l=1}$
-         \begin{stw}
-             (Nierówność Cauchy-Schwartz)\\
-             \[
-                 \left| \left<v_1|v_2 \right> \right| \le \Vert v_1 \Vert \cdot \Vert v_2 \Vert
-             .\]
-         \end{stw}
-         \begin{dowod}
-             Niech $\alpha \in [0,2\pi]:\left<v_1|v_2 \right> = e^{i\alpha}\left| \left<v_1|v_2 \right> \right| $.\\
-             Rozważmy funkcję $f: \mathbb{R}\to \mathbb{R}_{+}: f(t) = \left<t e^{i \alpha}v_1 - v_2 | te^{i\alpha}v_1-v_2 \right>$.
-             \begin{align*}
-                 &f(t) = \left<te^{i\alpha}v_1 | te^{i\alpha}v_1 \right> - \left<te^{i\alpha}v_1|v_2 \right> - \left<v_2|te^{i\alpha}v_1 \right> + \left<v_2|v_2 \right> = \\
-                 &= t^2 \left<v_1|v_1 \right> - te^{-i\alpha}\left<v_1|v_2 \right> - te^{i\alpha} \left<v_2|v_2 \right> + \left<v_2|v_2 \right> \\
-                 &= t^2 \left<v_1|v_1 \right> - 2t\left| \left<v_1|v_2 \right> \right| + \left<v_2|v_2 \right> \implies\\
-                 &\implies \Delta = 4\left| \left<v_1|v_2 \right> \right| ^2 - 4 \left<v_1|v_1 \right>\left<v_2 |v_2\right>\le 0
-             .\end{align*}
-             $\quad\Box$
-         \end{dowod}
-
-         Wniosek (nierówność trójkąta)\\
-         \[
-         \underset{v_1,v_2\in V}{\forall} \Vert v_1+v_2 \Vert \le \Vert v_1 \Vert + \Vert v_2 \Vert
-         .\]
-         \begin{dowod}
-             \begin{align*}
-             &\Vert v_1+v_2 \Vert ^2 = \left< v_1+v_2 | v_1+v_2 \right> = \left<v_1|v_1 \right> + \left<v_2|v_1 \right> + \left<v_1|v_2 \right> =\\
-             &= \Vert v_1 \Vert ^2 + 2 Re \left<v_1|v_2 \right> + \Vert v_2 \Vert ^2 \le \Vert v_1 \Vert ^2 + 2 \left| \left<v_1|v_2 \right> \right| +\Vert v_2 \Vert ^2 \le \\
-             & \underset{\text{C.S.}}{\le} \Vert v_1 \Vert ^2 + 2 \Vert v_1 \Vert \Vert v_2 \Vert + \Vert v_2 \Vert ^2 = \left( \Vert v_1 \Vert +\Vert v_2 \Vert  \right) ^2
-             .\end{align*}
-             $\quad\Box$
-         \end{dowod}
-
-        Przestrzeń sprzężona do przestrzeni $V$ z iloczynem skalarnym.\\
-        \begin{itemize}
-            \item Niech $u\in V$. Wówczas $v\in V \to \left<u|v \right>\in \mathbb{F}$ jest elementem $V^*$, który oznaczamy  $\phi_u$.
-                \[
-                \left<\phi_u,v \right> = \left<u|v \right>
-                .\]
-        \end{itemize}
-                \begin{przyklad}
-                    $V = \mathbb{R}_3[\times], \phi_u(w) = \int_0^1 u(t)w(t)dt$
-                \end{przyklad}
-                Na odwrót:
-                \begin{tw}
-                    $\underset{\phi\in V^*}{\forall} \underset{u\in V}{\exists}! : \phi = \phi_u$
-                \end{tw}
-                \begin{dowod}
-                    Jeżeli $\phi = 0$, to $u = 0$.\\
-                    jeżeli $\phi \neq 0$, to $\ker \phi := E \not\subseteq V$. Wiemy, że $V = E \bigoplus E^\perp$.\\
-                    Niech $u\in E^\perp - \{0\}: \left<\phi,u \right> = 1$.\\
-                    Obliczmy $\left<u|v \right> = \left< u | v - \left< \phi,v \right>\cdot u + \left<\phi,v \right>\cdot u \right> = \left<u|\left<\phi,v \right>\cdot u \right> = \left<\phi,v \right>\Vert u \Vert ^2$
-                \end{dowod}
-                Podsumowując, $\left<\frac{u}{\Vert u \Vert ^2}|v \right> = \left<\phi,v \right> \implies \phi = \phi_{\frac{u}{\Vert u \Vert ^2}}$, co daje istnienie. Jedyność: jeśli $\phi_{u_1} = \phi_{u_2}$, to $\phi_{u_1-u_2} = 0$. Ale to oznacza, że $0 = \phi_{u_1-u_2}(u_1-u_2) = \left<u_1-u_2|u_1-u_2 \right> = \Vert u_1-u_2 \Vert ^2 \implies u_1=u_2 \quad\Box$
-
-
-
+Rozważmy bazę $\mathcal{E} = \left\{ \begin{bmatrix} -1\\-2\\1 \end{bmatrix} ,\begin{bmatrix} 1\\1\\-1 \end{bmatrix} , \begin{bmatrix} 1\\0\\0 \end{bmatrix}  \right\}$
+\begin{align*}
+    [A]_{\mathcal{E}}^{\mathcal{E}} = \begin{bmatrix} 1 & 0 & 0\\ 0 & -1 & 1\\ 0 & 0 & -1\end{bmatrix} \text{ - postać jordanowska macierzy}
+.\end{align*}
+\end{przyklad}
+\begin{align*}
+    &A\in End(V),\quad Sp(A) = \left\{ \lambda_1,\ldots,\lambda_k \right\} ,\quad n_i\text{ - krotności }\lambda_i\\
+    &V = \bigoplus V_{\lambda_i},\quad V_{\lambda_i} = ker (A - \lambda_i \mathbb{I})^{n_i}\\
+    &A = \bigoplus A_i\text{, gdzie } A_i\in End(V_{\lambda_i}) \text{ taki, że }\quad A_i = A |_{V_{\lambda_i}}
+.\end{align*}
+Zauważmy,że \[
+    A_i = (A_i - \lambda_i \mathbb{I}_{V_{\lambda_i}} + \lambda_i \mathbb{I}_{V_{i}}
+.\]
+gdzie \[
+    (A_i - \lambda_i \mathbb{I}_{V_{\lambda_i}})^{n_i} = 0
+.\]
+\begin{definicja}
+    Jeżeli $N\in End(W)$ jest taki, że $N^q = 0$ (dla pewnego $q$), to mówimy, że $N$ jest nilpotentny. Najmniejsze takie $q$ nazywamy stopniem nilpotentności $N$.
+\end{definicja}
+\begin{przyklad}
+    \[
+        W = \mathbb{R}_n [.],\quad N = \frac{d}{dx} \text{ - nilpotent st. n+1}
+    .\]
+    \begin{align*}
+        &\left\{ n!, n! x, \binom{n}{2} x^2,\ldots, \binom{n}{n-1}x^{n-1}, \binom{n}{n}x^n \right\}\\
+        &[N]_{\mathcal{E}}^{\mathcal{E}} = \begin{bmatrix} 0&1&0&\ldots&0\\0&0&1&\ldots&0\\ \vdots &\vdots &\vdots &\ddots &1 \\0&0&0&0&0\end{bmatrix}
+    .\end{align*}
+\end{przyklad}
+\begin{definicja}
+    Klatką jordanowską nazywamy macierz postaci \[
+        \begin{bmatrix}
+        \lambda&1&0\\
+               &\ddots&1\\
+               0&&\lambda
+         \end{bmatrix}
+    .\]
+\end{definicja}
+\begin{tw}
+    Niech $A\in End(W)$, gdzie $w$ jest nad $\mathbb{C}$, $dim V < \infty$. Wówczas istnieje baza przestrzeni  $W$, w której macierz operatora $A$ jest blokowa, a jej bloki są klatkami jordanowskimi własnymi na diagonali.
+\end{tw}
+\begin{dowod}
+    Skoro $A = \bigoplus A_i,\quad A_i = \lambda_i \mathbb{I}_{V_i}+N_I$, $N_i = (A_i - \lambda_i \mathbb{I}_{V_i})$ - jest nilpotentny stopnia $n_i$, to wystarczy twierdzenie udowodnić dla operatorów nilpotentnych. Niech $N: W\to W$ - nilpotentny stopdnia $q$ i $N^q = 0$.\\
+    $\underset{i\in \left\{ 0,\ldots,q \right\} }{\forall} $ niech $W_i = ker N^i$.\\
+    \[
+        \left\{ 0 \right\} = W_0 \subset W_1 \subset \ldots \subset W_{q-1} \subset W_q = W
+    .\]
+    ustalmy $w\in W$. Mówimy, że $w$ ma wysokość $i$, jeżeli $N^ix$ = 0 oraz $N^{i-1}x \neq 0$.\\
+    Zauważmy, że jeżeli $x$ ma wysokość równą $i$, to układ wektorów \[
+        \left\{ x,Nx,\ldots,N^{i-1}x \right\}
+    .\] jest liniowo niezależny.\\
+    Rzeczywiście, $\alpha_0x+\alpha_1Nx + \ldots + \alpha_{i-1}N^{i-1}x = 0 |\underset{\text{działamy }\implies x_0}{N^{i-1}}$\\
+    $\alpha_1Nx + \ldots + \alpha_{i-1}N^{i-1}x = 0 |\underset{\text{działamy }\implies\alpha_1 = 0}{N^{i-2}}$ itd.\\
+    Rozważmy tym razem podprzestrzeń $ker N \cap Im N^{j-1} \subset W$ i zauważmy, że $dim ker N_1 Im N^{j-1} = dim W_j - dim W_{j-1}$.\\
+W tym celu zdefiniujmy operator $F: W_j \to ker N \cap Im N^{j-1}$ wzorem $F x = N^{j-1}x$.\\
+Skoro $im F = ker N \cap Im N^{j-1}$ oraz $ker F = W_{j-1}$, to \\
+$dim W_j = dim im F + dim ker F = dim (ker N\cap Im N^{j-1}) + dim W_{j-1}$\\
+ \[
+     ker F = W_{j-1} \text{ - oczywiste. }
+.\]
+\begin{align*}
+    &Im F = ker N \cap Im N^{j-1}: y\in ker N \cap Im N^{j-1} \implies \underset{x\in Im N^{j-1}}{\exists} : y = N^{j-1}x \text{ oraz } Ny = 0\\
+    &\text{to w takim razie } N^{j}x = 0\implies x\in W_j \text{ oraz } y = N^{j-1}x = Fx\\
+    &ker N \cap Im N^{q-1}\subset ker N \cap Im N^{q-2}\subset \ldots \subset ker N\\
+.\end{align*}
+Niech $\left\{ f_1,\ldots,f_m \right\} m=dim ker N$ będzie bazą $ker N$ zgodną z wzrastającym ciągiem podprzestrzeni. Wektor $f_1\in ker N\cap Im N^{q-1}$ jest końcówką serii wektorów długości $q$.\\
+Oznaczmy $f_i=e_{i1}$ i niech $h(i)$ oznacza wysokość odpowiedniej serii w powyższym sensie. Okazuje się, że
+\[
+    \left\{ e_{ij}: i\in 1,..,m, j\in\left\{ 1,\ldots,h(i) \right\}  \right\} \text{ jest bazą }W_i \quad\Box
+.\]
+\end{dowod}
 \end{document}

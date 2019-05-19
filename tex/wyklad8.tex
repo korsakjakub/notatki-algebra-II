@@ -1,0 +1,93 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{
+    {"../img/"}
+    {"img/"}
+}
+
+\begin{document}
+\subsection{Klatki Jordanowskie}
+\[
+    \begin{bmatrix} \lambda& \varepsilon_1&&0\\ &\lambda& \varepsilon_2&\\ 0&&\lambda&\varepsilon_3 \end{bmatrix} \in M_h(\mathbb{C}), \lambda \in \mathbb{C}, \varepsilon_k \in \{0,1\}
+.\]
+\begin{przyklad}
+    np. $\begin{bmatrix} 2&0&0\\0&2&1\\0&0&2 \end{bmatrix} $
+\end{przyklad}
+\begin{tw}
+    Niech $A\in End(W), Sp(A) = \left\{ \lambda_1,\ldots,\lambda_k \right\} $. Istnieje baza (Jordanowska) $\mathcal{E}$ przestrzeni $W$, to znaczy, że baza taka, że $[A]_\mathcal{E}^\mathcal{E}$ jest sumą klatek Jordanowskich z $\lambda_i$ na diagonali.\\
+\end{tw}
+Operator nilpotentny. $N^q = 0$ - $q$ - stopień nilpotentności ($N^{q-1} \neq 0$ )
+\begin{przyklad}
+    \[
+        N = \begin{bmatrix} 0&0&0&0\\0&0&1&0\\0&0&0&1\\0&0&0&0 \end{bmatrix} \implies q = 3
+    .\]
+    \[
+        A\to W_{\lambda_i} = \ker(A-\lambda_i 1)^{n_i}\subset W\quad A_{\lambda_i}: W_{\lambda_i} \to W_{\lambda_i}.\quad A_{\lambda_i} = A|_{W_{\lambda_i}}
+    .\]
+    \[
+        A_{\lambda_i} = \underbrace{\lambda_i 1_{W_{\lambda_i}}}_{D_{\lambda_i}} + \underbrace{(A_{\lambda_i} - \lambda_i 1_{W_{\lambda_i}})}_{N_{\lambda_i}}
+    .\]
+    \[
+    N_{\lambda_i}^{n_i} = 0
+    .\]
+\end{przyklad}
+\begin{dowod}
+    (dla operatorów nilpotentnych). Niech $N\in End(W)$ - nilpotentny.\\
+    $W_i = \ker N^i,\quad \{0\} = W_0 \subset W_1 \subset W_2 \subset \ldots \subset W_q = W \to$\\
+    $\to \ker N \cap im N^{q-1} \subset \ker N \cap im N^{q-2} \subset \ldots \subset \ker N_i (*)$\\
+    $\dim \ker N \cap im N^{j-1} = \dim W_j - \dim W_{j-1}$.\\
+    Niech $\left\{ f_1,\ldots,f_m \right\} $ będzie bazą $\ker N$ zgodna z zawieraniami (*). Wtedy $\left\{ e_{11},\ldots,e_{m,1} \right\} \underset{e_{i,1}}{\forall} $ jest końcówką serii długości $h(i)$\\
+
+    W ten sposób otrzymujemy układ wektorów:
+    \[
+        \begin{matrix}
+            e_{1,h(1)}&&&\\
+                      \vdots&e_{2,h(2)}&&\\
+                      \vdots&&e_{i,h(i)}&\\
+            \vdots&&&\\
+                  e_{11}&e_{21}&\ldots&e_{m,1}
+        \end{matrix}
+    \]
+\end{dowod}
+Dlaczego $\left\{ e_{i,j}: i\in \left\{ 1,\ldots,m \right\} , j\in \left\{ 1,..,h(i) \right\}  \right\} $ jest bazą $W$?\\
+Liniowa niezależność: $\sum \alpha_{ij} e_{ij} = 0 (**), \quad \alpha_{ij}\in \mathbb{C}$ \\
+Działając $N^{q-1}$ nie zeruje się $e_{ij}$, które wchodzą do serii krótkszej niż $q$. Zatem $\alpha_{iq} = 0\quad \underset{i\in\left\{ 1,\ldots,m \right\} }{\forall} $. Dalej, działając $N^{q-2} \to \alpha_{i,q-1} = 0$ itd.\\
+Czy wektorów $e_{ij}$ jest tyle co wymiar $W$?
+\begin{align*}
+    &\dim W = \dim W_q \cdot  \dim W_{q-1} + \dim W_{q-1} - \dim W_{q-2} + \ldots + \dim W_1 \cdot W_{0} = \\
+    &= \underbrace{\dim \ker N \cap im N^{q-1}}_{\text{końcówki serii dł. $q$ }} + \underbrace{\dim \ker N \cap im N^{q-2}}_{\text{końcówki serii dł. $q-1$ }} + \ldots \ldots\\
+    &= \text{liczba wektorów} \left\{ e_{ij}: i\in \left\{ 1,\ldots,m \right\} , j\in \left\{ 1,\ldots,h(i) \right\}  \right\}
+.\end{align*}
+Zauważmy, że macierz $N$ w bazie $\mathcal{E} = \left\{ e_{11},e_{12},\ldots,e_{1,h(1)},e_{21},e_{22},\ldots,e_{2,h(2)},\ldots \right\} $
+\[
+    [N] = \begin{bmatrix} \begin{bmatrix} 0&1&0&0\\ 0&0&1&0\\\vdots&\vdots&0&1\\ \vdots & &&0 \end{bmatrix}& 0 & \\ 0 & \begin{bmatrix} 0&1&&\\ \vdots & 0 &1 \\ & & 0 \end{bmatrix}  & \\ &&\ddots \end{bmatrix}
+.\]
+\subsection{Iloczyny skalarne}
+$\mathbb{F} = \mathbb{R}$ lub $\mathbb{F} = \mathbb{C}$, $W$ - przestrzeń wektorowa nad $\mathbb{F}$
+\begin{definicja}
+    Odwzorowanie $\left<.|. \right>: W\times W\to \mathbb{F}$ takie, że
+    \begin{align}
+        &\underset{u_1,u_2,v \in W}{\forall} &&\left<v|u_1+u_2 \right> = \left<v|v_1 \right>+ \left<v|v_2 \right>\\
+        &\underset{u,v \in W}{\forall} &&\underset{\lambda \in \mathbb{F}}{\forall} \left<v|\lambda u \right> = \lambda \left<v|u \right>\\
+        &\underset{u,v \in W}{\forall}  &&\left<v|u \right> = \left<u | v \right>\\
+        &\underset{u \in W-\{0\}}{\forall}  &&\left<u|u \right> > 0
+    .\end{align}
+    nazywamy iloczynem skalarnym na przestrzeni  $W$.
+\end{definicja}
+Uwaga: (a) $\left<0|0 \right> = 0,\quad \left<0|0\cdot 0 \right> = 0\left<0|0 \right>$\\
+(b) $\left<u_1+u_2|v \right> =  \left<u_1|v \right> + \left<u_2|v \right> = \overline{\left<v|u_1+u_2 \right>} = \overline{\left<v|u_1 \right>} + \overline{\left<v|u_2 \right>}$ \\
+(c) $\left<\lambda u|v \right> = \overline{\lambda} \left<u|v \right> = \overline{\left<v|\lambda u \right>} = \overline{\lambda} \overline{\left< v|u\right>}$
+\begin{przyklad}
+    $W = \mathbb{C}^n,\quad u = \begin{bmatrix} u_1\\\vdots\\u_n \end{bmatrix} ,\quad v = \begin{bmatrix} v_1\\ \vdots \\ v_n \end{bmatrix} $. Def: $\left<u|v \right> = \sum_{i=1}^n \overline{u}_i v_i$.\\
+    Notacja Diraca: $\left<u|v \right>, |u>, <v|, |u><v|$
+\end{przyklad}
+\begin{przyklad}
+    $u,v\in \mathbb{C}_n [\times]$, $\left<u|v \right> \overset{\text{def}}{=} \int_{-\infty}^{+\infty} e^{-t^2} \overline{u(t)} w(t) dt$
+\end{przyklad}
+\begin{definicja}
+    Mówimy, że wektory $u,w\in W$ są ortogonalne (względem $\left<| \right>$ ), jeżeli $\left<u|v \right> = 0$.
+\end{definicja}
+\subsection{Ortogonalizacja Gramma-Schmidta}
+Niech $\mathcal{E} = \left\{ e_1,\ldots,e_n \right\} $ będzie bazą $W$. Mówimy, że $\mathcal{E}$ jest bazą ortogonalną jeżeli $\left<e_i|e_j \right> = 0, i\neq j$.\\
+Jeżeli dodatkowo $\left<e_i | e_i \right> = 1$, to mówimy, że $\mathcal{E}$ jest bazą ortonormalną.\\
+Niech $\left\{ f_1,\ldots,f_n \right\} $ będzie dowolną bazą. Zdefiniujmy (indukcyjnie) wektory $\left\{ e_1,\ldots,e_n \right\}: e_1 = f_1, e_i = f_i - \sum_{k=1}^{i-1} \frac{\left<e_k|f_i \right>}{\left<e_k|e_k \right>}\cdot e_k$
+\end{document}

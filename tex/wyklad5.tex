@@ -3,116 +3,233 @@
     {"../img/"}
     {"img/"}
 }
-
 \begin{document}
-    \begin{definicja}
-        Mówimy, że macierz $A\in M_n(\mathbb{F})$est diagonalizowalna,eżeli istnieje baza $\mathcal{E}$ przestrzeni $\mathbb{F}^n$ taka, że $[A]_\mathcal{E} = diag(\lambda_1,\ldots,\lambda_n)$,\\
-        gdzie $\lambda_1,\ldots,\lambda_n\in\mathbb{F}$, to znaczy, że $A e_k = \lambda_k e_k$.\\
-        Jeżeli $G = [id]_\mathcal{E}^{st}$, to
-        \[
-            \begin{bmatrix} \lambda_1&\ldots&0\\ \vdots&\ddots&\vdots\\ 0&\dots&\lambda_n  \end{bmatrix} = G^{-1}A G
-        .\]
-        Wniosek: Macierz $A$ est diagonalizowalna jeżeli $\mathbb{F}^n$ ma bazę złożoną z wektorów własnych $A$.
-    \end{definicja}
-    \begin{przyklad}
-        (antyprzykład)\\
-        $A = \begin{bmatrix} 1&1\\0&1 \end{bmatrix} $ nie jest macierzą diagonalizowalną.
-        \[
-            w_a = \det \begin{bmatrix} 1-\lambda&1\\0\\1-\lambda \end{bmatrix} = (1-\lambda)^2,\quad Sp(A) = \{1\}
-        .\]
-        \[
-            ker(A - 1) = ker\begin{bmatrix} 0&1\\0&0 \end{bmatrix} = \left< \begin{bmatrix} 1\\0 \end{bmatrix} \right>
-        .\]
-        Czyli $\mathbb{C}^2$ nie posiada bazy złożonej z wektorów własnych $A$.\\
-        $\lambda = 1, n_1 = 2. V_\lambda = ker(A-\lambda 1)^{n_1} = ker(A-1)^2 = ker \begin{bmatrix} 0&1\\0&0 \end{bmatrix}^2$
-    \end{przyklad}
-    \begin{tw}
-        $V$ - przestrzeń wektorowa nad $\mathbb{C}$. Ustala się endomorfizm $A\in L(V)$. $Sp(A) = \left\{ \lambda_1,\ldots,\lambda_k \right\} $ i niech
-        \[
-            w_A(\lambda) = \prod_{i=1}^{k} (\lambda_i - \lambda)^{n_i}
-        .\]
-        Zdefiniujmy $V_i = ker(A-\lambda_i 1)^{n_i}$. Wówczas $A V_i \subset V_i, V=\bigoplus V_i, dim V_i = n_i$
-    \end{tw}
-    Wniosek: Niech $\mathcal{E}$ będzie bazą $V$ zgodną z rozkładem $V = \bigoplus V_i$, to znaczy pierwsze $n_i$ wektorów $V$ jest bazą $V_i$, kolejne $n_2$ jest bazą $V_2$, itd. Wówczas istnieją macierze $A_i\in M_{n_i}(\mathbb{F})$ takie, że
-    \[
-        [A]_\mathcal{E} = \begin{bmatrix} A_1&&&0\\ &A_2&\\ &&\ddots&\\ 0&&&A_n \end{bmatrix}
-    .\]
-    \[
-    A e_1 = \mu_1e_1 + \ldots \mu_{n_1}e_{n_1}
-    .\]
-    \begin{dowod}
-        (równość $n_i = dim V_i$)\\
-        Niech $w_i(\lambda) = \det (A_i - \lambda 1).$\\
-        Wtedy
-        \[
-         w_A(\lambda) = \det ([A]_\mathcal{E} - \lambda 1) =
-        \prod_{i=1}^{k} w_i(\lambda)
-        .\]
-        Niech $\lambda\in Sp(A_i).$ Zauważmy, że wówczas $\lambda\in Sp(A)$, to znaczy, że
-        \[
-            \underset{\lambda_j\in Sp(A)}{\exists}. \lambda = \lambda_j
-        .\]
-        Wtedy $V_i \cap V_j \neq \phi$, zatem $i =j$. Czyli $w_i(\lambda) = (\lambda_i - \lambda)^{dim V_i}.$ Zatem
-        \[
-            \prod_{i=1}^{k} (\lambda_i - \lambda)^{dim V_i} \implies n_i = dim V_i\quad\Box
-        .\]
-    \end{dowod}
-    \begin{przyklad}
-        Rozważmy równanie różniczkowe liniowe:
-        \[
-            \frac{d}{dt} \underset{v(t)}{\begin{bmatrix} x(t)\\y(t)\\z(t) \end{bmatrix}} =
-            \underset{A}{\begin{bmatrix} 0&2&3\\1&3&5\\-1&-2&-4 \end{bmatrix}} \underset{\nabla(t)}{\begin{bmatrix} x(t)\\y(t)\\z(t) \end{bmatrix}}
-        .\]
-        \[
-            v(t) = e^{A t}v(0) = v(0) \sum_{n=0}^{\infty} \frac{(t A)^n}{n!}
-        .\]
-    \end{przyklad}
-    \begin{stw}
-        Niech $f$ - funkcja analityczna oraz $w\in \mathbb{C}_n [.]$. Wtedy istnieje funkcja analityczna $q$ oraz wielomian $r\in\mathbb{C}_{n-1}[.]$ taki, że $f = wq + r$
-    \end{stw}
-    \begin{dowod}
-        Indukcja ze względu na liczbę pierwiastków $w$.
-        \[
-            k=1:\quad w(\lambda) = (\lambda-\lambda_0)^n\\
-            f(\lambda) = \sum_{k=0}^{\infty} \frac{f^{(k)}(\lambda_0)}{k!}(\lambda-\lambda_0)^k = (\lambda - \lambda_1)^n \underbrace{\sum_{k=n}^{\infty} \frac{f^{(n)}(\lambda_0)}{n!}(\lambda - \lambda_0)^{k-n}}_q + \underbrace{\sum_{k=0}^{n-1} \frac{f^{(k)}(\lambda_0)}{k!}(\lambda-\lambda_0)^k}_r
-        .\]
-        Indukcja:
-        \[
-            w(\lambda) = (\lambda - \lambda_1)^{n_1} \ldots (\lambda - \lambda_k)^{n_k} (\lambda-\lambda_{k+1})^{n_{k+1}}
-        .\]
-        Z indukcji istnieje $\tilde q$ - analityczna
-        \[
-            f(\lambda) = (\lambda-\lambda_1)^{n_1}\ldots(\lambda-\lambda_k)^{n_k}\tilde q(\lambda) + \tilde r(\lambda)
-        .\] Gdzie $\tilde r\in \mathbb{C}_{n_1+\ldots+n_{k-1}}[.]$ oraz istnieje $\tilde \tilde q, \tilde \tilde r$ takie, że $\tilde q = (\lambda-\lambda_{k+1})^{n_{k+1}} \tilde \tilde q + \tilde \tilde r, \tilde \tilde r\in \mathbb{C}_{n_{k+1}-1}$
-        Po wstawieniu $\tilde q: f(\lambda)=(\lambda-\lambda_1)^{n_1}\ldots(\lambda-\lambda_{k+1})^{n_{k+1}}\tilde \tilde q+r$, gdzie $r(\lambda) = \tilde r(\lambda) + \tilde \tilde r(\lambda) (\lambda-\lambda_1)^{n_1}\ldots(\lambda-\lambda_k)^{n_k}\quad\Box$
-    \end{dowod}
-    Zastosowanie powyższego stwierdzenia i twierdzenia Cayleya - Hamiltona.
-
-    \begin{przyklad}
-        Obliczyć $e^{A t}$ : rozważmy funkcję
-        \[
-            f: \lambda \to e^{\lambda t} = \sum_{n=0}^{\infty} \frac{(\lambda t)^n}{n!}
-        .\]
-        Chcemy obliczyć $f(A)$, gdzie $f$ jest funkcją analityczną (zadaną szeregiem).
-        \[
-            f(\lambda) = q(\lambda)w(\lambda) + r(\lambda); \quad w_A(A) = 0
-        .\]
-        Zatem
-        \[
-            f(A) = q(A)w(A)+ r(A) = r(A)
-        .\]
-        \[
-            w_A(\lambda) = (1-\lambda)(1+\lambda)^2, Sp(A) = \left\{ 1,-1 \right\} ,n_1=1,n_2=2
-        .\]
 \[
-    e^{t \lambda} = q(\lambda) (1-\lambda)(1+\lambda)^2 + a\lambda^2+b\lambda+c
+    A\in \text{End} ( V ): V\to V
+.\] wektory własne $v\in V-\{0\}$  $A v = \lambda v$
+Wielomian charakterystyczny endomorfizmu \[
+    w_A(\lambda) = \det (A - \lambda 1),\quad \lambda\in S_p(A)
 .\]
-Jak obliczyć $a,b,c\in\mathbb{R}$?
+\[
+    V_\lambda = \ker (A - \lambda 1)
+.\]
+Rozwiązania równań różniczkowych wynika w pewnym sensie z następującego twierdzenia:
+\begin{obserwacja}
+    $u(t)$ - wielomian stopnia $n$, $u(t) = a_0+a_1 t + \ldots + a_n t^n$\\
+    Endomorfizm postaci $a_0 1 + a_1 A + a_2 A^2 + \ldots + a_n A^n \in \text{End} (V)$ oznaczać będziemy $u(A)$.
+    Własności
+    \begin{align}
+        &(u_1+u_2)(A) = u_1(A) + u_2(A)\\
+        &(u_1 u_2)(A) = u_1(A) u_2(A)
+    .\end{align}
+\end{obserwacja}
+\begin{przyklad}
+    \[
+    A = \begin{bmatrix}
+    1 & 1\\
+    1 & 0\end{bmatrix},
+    w_A(\lambda) = \lambda^2 - \lambda - 1
+    .\]
+    \[
+        w_A(A) =
+        \begin{bmatrix}
+        1 & 1\\
+        1 & 0\end{bmatrix} ^2 -
+        \begin{bmatrix}
+        1 & 1\\
+        1 & 0\end{bmatrix} -
+        \begin{bmatrix}
+        1 & 0\\
+        0 & 1\end{bmatrix} =
+        \begin{bmatrix}
+        2 & 1\\
+        1 & 1\end{bmatrix} -
+        \begin{bmatrix}
+        2 & 1\\
+        1 & 1\end{bmatrix} = 0!!!
+    .\]
+\end{przyklad}
+
+\begin{tw}
+    (Cayleya - Hamiltona)
+    \[
+        \underset{A\in \text{End}(V)}{\forall} w_A(A) = 0
+    .\]
+\end{tw}
+\begin{dowod}
+    Niech $\mathcal{E}$ - baza $\mathcal{V}: \mathcal{A} = [ a_{ij} ] = \left[ A \right] _\mathcal{E}^\mathcal{E}$
+    \[
+        \left[ w(A) \right]_\mathcal{E}^\mathcal{E} = w\left( \left[ A \right] _\mathcal{E}^\mathcal{E} \right) \underset{w\in \mathbb{F}_k [x]}{\forall}
+    .\]
+    Zatem wystarczy udowodnić to dla macierzy $\mathcal{A}$
+
+    Przypomnienie: macierz dopełnień algebraicznych \[
+        \mathcal{A}^{D}\mathcal{A} = \det(\mathcal{A}) 1
+    .\]
+    W szczególności \[
+        (\mathcal{A} - \lambda 1)^D (\mathcal{A} - \lambda 1 ) = \det(\mathcal{A} - \lambda 1) 1 = w_A(\lambda) 1
+    .\]
+
+    Uwaga: $n = \dim V$, to istnieją  $b_0,\ldots,b_{n-1} \in M_{n,n}(\mathbb{F})$ takie, że
+    \begin{equation}\label{eq:100}
+        (\mathcal{A} - \lambda 1)^D = b_0 + \lambda b_1 + \ldots + \lambda^{n-1} b_{n-1}
+    \end{equation}
+
+    Na przykład $($notacje: $\det \left[ a_{ij} \right] = \left| a_{ij} \right| )$
+
+\[
+\begin{bmatrix}
+a_{11} - \lambda & a_{12} & a_{13}\\
+a_{21} & a_{22} - \lambda & a_{23}\\
+a_{31} & a_{32} & a_{33} - \lambda
+\end{bmatrix}^D =
+\begin{bmatrix}
+    \begin{vmatrix}
+        a_{22} - \lambda & a_{23}\\
+        a_{32} & a_{33} - \lambda
+    \end{vmatrix}
+    & -
+    \begin{vmatrix}
+        a_{22} & a_{23}\\
+        a_{32} & a_{33} - \lambda
+    \end{vmatrix}
+    & +
+    \begin{vmatrix}
+        &&\\
+        &&\\
+    \end{vmatrix}\\
+    -
+    \begin{vmatrix}
+     &&\\
+     &&\\
+    \end{vmatrix}
+    &
+    \begin{vmatrix}
+        a_{11} & a_{13}\\
+        a_{31} & a_{33}
+    \end{vmatrix}
+    & -
+    \begin{vmatrix}
+      &&\\
+      &&\\
+    \end{vmatrix}\\
+    \begin{vmatrix}
+        &&\\
+        &&\\
+    \end{vmatrix}
+    & -
+    \begin{vmatrix}
+       &&\\
+       &&\\
+    \end{vmatrix}
+    &
+    \begin{vmatrix}
+        a_{11} - \lambda & a_{22}\\
+        a_{21} & a_{22} - \lambda\\
+    \end{vmatrix}
+
+\end{bmatrix}
+.\]
+
+Oznaczenie $w_A(\lambda) = c_0 + c_1 \lambda + \ldots + c_n \lambda^n$
+\ref{eq:100} oraz (123) \[
+    (b_0+b_1 \lambda + \ldots + b_{n-1}\lambda^{n-1})(\mathcal{A} - \lambda 1) = c_0 1 + \lambda c_1 1 + \ldots + \lambda^n c_n 1
+.\]
+
 \begin{align*}
-    &\lambda=1 &e^t = a+b+c\\
-    &\lambda=-1 &e^{-t} = a-b+c\\
-    &\frac{d}{d\lambda}e^{\lambda t} = &q'(\lambda)w(\lambda) + qw'(\lambda)+2a\lambda + b\implies\\
-    &\lambda = -1 &te^{- t} = -2a+b
-.\end{align*}
-    \end{przyklad}
+    \lambda^0 b_0 \mathcal{A} &= c_0 1 &|\mathcal{A}^0\\
+    \lambda^1 b_1 \mathcal{A} - b_0 &= c_1 1 &|\mathcal{A}^1\\
+    \lambda^{n-1} b_{n-1} \mathcal{A} - b_{n-2} &= c_{n-1} 1 &|\mathcal{A}^{n-1}\\
+    \lambda^n - b_{n-1} &= c_n 1 &|\mathcal{A}^n\\
+    + b_0 \mathcal{A} + (b_1 \mathcal{A}^2 - b_0 \mathcal{A}) + \ldots + b_{n-1}\mathcal{A}^n - b_{n-2}\mathcal{A}^{n-1} &= c_0 1 + c_1 \mathcal{A} + \ldots + c_n \mathcal{A}^n\\
+    0 &= c_0 1 + c_1 \mathcal{A} + \ldots + c_n \mathcal{A}^n\Box
+\end{align*}
+\end{dowod}
+
+\begin{przyklad}
+    $x_n$ - ciąg Fibonacciego. $x_0 = 0, x_1 = 1$
+    \[
+    \begin{bmatrix}
+    x_{n+1}\\
+    x_{n}
+\end{bmatrix} =
+\begin{bmatrix}
+1 & 1\\
+1 & 0\end{bmatrix}^n
+\begin{bmatrix}
+1\\
+0\end{bmatrix} =
+\underbrace{
+\begin{bmatrix}
+1 & 1\\
+1 & 0\end{bmatrix}^n}_{A}
+\begin{bmatrix}
+1\\
+0\end{bmatrix}
+    .\]
+    \[
+        w_A(\lambda) = \lambda^2 - \lambda - 1, u(\lambda) = \lambda^n
+    .\]
+    \[
+        \lambda^n = u(\lambda) = q(\lambda)(\lambda^2 - \lambda - 1) + \underset{a\lambda+b_1}{r(\lambda)} \implies A^n = a A + b 1
+    .\]
+    Wyznaczamy $a$ i $b$:\\
+    wartości własne wielomianu charakterystycznego: $\lambda_{+} = \frac{1+\sqrt{5}}{2}, \lambda_{-} = \frac{1-\sqrt{5}}{2}$ \\
+    \begin{align*}
+        \lambda_{+}^n = a \lambda_{+} + b_1\\
+        \lambda_{-}^n = a \lambda_{-} + b_1
+    .\end{align*} \[
+        \implies a = \frac{1}{\sqrt{5} } \left ( \left (\frac{1+\sqrt{5} }{2})^2 - (\frac{1-\sqrt{5} }{2} \right )^2\right ), b = \ldots
+    .\]
+    \[
+    \begin{bmatrix}
+    x_{n+1}\\
+    x_{n}
+    \end{bmatrix} =
+    a \begin{bmatrix}
+    1\\
+    1\end{bmatrix} + b \begin{bmatrix}
+    1\\
+    0\end{bmatrix} =
+    \begin{bmatrix}
+    a+b\\
+a\end{bmatrix} \implies x_n = \frac{1}{\sqrt{5} }\left( \left( \frac{1+\sqrt{5}}{2}  \right)^n - \left( \frac{1-\sqrt{5} }{2} \right) ^n  \right)
+    .\]
+\end{przyklad}
+
+Założenie: $\mathbb{F}\in \mathbb{C}, V$ nad  $\mathbb{C}$.\\
+Ustalmy $A\in \text{End} (V), sp(A) = \left\{ \lambda_1, \ldots, \lambda_r \right\} $
+\[
+    w_A(\lambda) = \prod_{i=1}^r (\lambda_i - \lambda)^{n_i}, w_j(\lambda) = \prod_{i\neq j}^r (\lambda_i - \lambda)^{n_i}
+.\]
+Własności:\\
+a) $j_1 \neq j_2$, to $\underset{u\in \mathbb{C}_m [.]}{\exists},\quad w_{j_1}(\lambda) w_{j_2}(\lambda) = u(\lambda)w_A(\lambda)$\\
+b) $NWD(w_1,\ldots,w_r) = 1 \implies \underset{v_1,\ldots,v_r \in \mathbb{C}[.]}{\exists} 1 = v_1 w_1+ \ldots + v_r w_r$
+
+Zdefiniujmy \[
+    P_j = v_j(A) w_j(A),\quad j=1,\ldots,r
+.\]
+Własności rodziny $\left\{ P_1,\ldots,P_r \right\} $ \\
+(i) $\sum_{j=1}^{r} {P_j = 1}, \\
+(ii) j_1 \neq j_2:\quad P_{j_1} P_{j_2} = v_{j_1}(A) v_{j_2}(A) w_{j_1}(A) w_{j_2}(A)$ \\
+(iii) $P_i^2 = P_i \sum_{j=1}^{r} P_j = P_i$ \\
+(iv) niech $V_i = im P_i$. Wówczas $V = \overset{r}{\underset{i = 1}{\bigoplus}} V_i$\\
+
+\[
+    v = P_1 v + \ldots + P_r v \text{ i jeżeli } v\in V_{j_1} \bigcap V_{j_2} \implies P_{j_1} v = P_{j_1}P_{j_2} v = 0
+.\]
+(v) $V_j$ jest niezmiennicze na działanie $A$, gdyż $A P_j = A v_j(A) w_j (A) = v_j (A) w_j (A) A = P_i A$\\
+a zatem jeżeli $v\in V_j$, to $A v = A P_j v = P_j A v \in V_j$\\
+(vi)  $v_j = \ker \left( (A - \lambda_j 1)^{n_j} \right).$ $v\in v_j(a) w_j(A) v \implies (A - \lambda_1 1)^{n_j}v = v_j(A)w_j(A)(A - \lambda_j 1)^{n_j} = 0 \implies v\in \ker(A - \lambda_r 1)^{n_j}$\\
+$(A-\lambda_j 1)^{n_j} v = 0 \implies v = P_1 v + \ldots + P_j v + \ldots + P_r v = P_j v \subset V, i\neq j, P_i v = s_i(A) (A - \lambda_j 1)^{n_j} v = 0$ dla każdego $s_j\in \mathbb{C}[.]$\\
+(vii) $\dim V_j = n_j$
+
+\begin{definicja}
+    Przy powyższych oznaczeniach $v_j = \ker (A - \lambda_j 1)^{n_j}$ nazywamy podprzestrzenią pierwiastkową $A$
+\end{definicja}
+
+\begin{tw}
+    O rozkładzie na podprzestrzenie pierwiastkowe
+\end{tw}
+
 \end{document}
