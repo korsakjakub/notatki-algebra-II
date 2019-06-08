@@ -1,0 +1,117 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{
+    {"../img/"}
+    {"img/"}
+}
+
+\begin{document}
+    $V,W$ - przestrzenie nad $\mathbb{C}$.\\
+    $\left<.|. \right>_V$ - iloczyn skalarny na $V$\\
+    $\left<.|. \right>_W$ - iloczyn skalarny na $W$,\\
+    $A\in L(V,W) \to A^*\in L(W,V)\to \left<w|Av \right>_W = \left<A^*w|v \right>_V$. \\
+    W dalszych rozważaniach $V = W \& A\in L(V)$.  $A$ - normalny, jeśli $A^*A = AA^*$.\\
+    \begin{przyklad}
+        np.\\
+        i) $A^* = A$ - samosprzężoność.\\
+        ii) $A^* = A^{-1}$ - unitarność.
+    \end{przyklad}
+Jeżeli $\mathcal{E}$ - baza ortnonormalna $V$, $[a_{ij}] = [A]_\mathcal{E}^\mathcal{E}$, $[b_{ij}] = [A^*]_\mathcal{E}$. $b_{ij} = \overline{a_{ji}}$
+
+Przypomnienie:
+jak mamy $X\subset V$ to zapisujemy to $V =  X \bigoplus X^\perp$, $P: V\to V$ - nazywamy rzutem $X$ wzdłuż $X^\perp$, czyli rzutem ortogonalnym na $X$.\\
+$\left\{ e_1,\ldots,e_k \right\} $ - baza ortonormalna $X$, $P = \sum_{i=1}^{k}|e_i><e_i|$
+
+\begin{stw}
+    Niech $V = X \bigoplus Y$. Wówczas rzut $P: V\to V$ na $X$ wzdłuż $Y$ jest ortogonalny $\iff$ $P^* = P$.
+\end{stw}
+\begin{dowod}
+    $\implies$ \\
+    $Y = X^\perp$. Weźmy  $v = v_1+v_2, u = u_1+u_2, v_1,u_1\in X, v_2,u_2\in Y$.
+    \[
+    \left<u|Pv \right> = \left<u_1+u_2 | v_1 \right> = \left<u_1|v_1 \right>
+    .\]
+    \[
+    \left<Pu|v \right> = \left<u_1|v_1+v_2 \right> = \left<u_1|v_1 \right>
+    .\]
+    \[
+    \left<u|Pv \right> = \left<Pu|v \right> \implies P = P^*
+    .\]
+
+    $\impliedby$ \\
+    $P = P^*$. Czy $\underset{y\in Y, x\in X}{\forall} \left<y|x \right> = 0$?
+    \[
+    \left<y|x \right> = \left<y|Px \right> = \left<Py|x \right> = 0\quad\Box
+    \]
+\end{dowod}
+
+\begin{stw}
+Niech $A\in L(V)$. Następujące warunki są równoważne:
+(1) $A$ jest normalne\\
+(2) $\underset{v\in V}{\forall} \Vert Av \Vert = \Vert A^* v \Vert $\\
+W szczególności jeśli $A$ - normalny, to
+\[
+    ker(A-\lambda \mathbb{I}) = ker(A^* - \overline{\lambda}\mathbb{I})
+.\]
+Ponadto, jeśli $\lambda \neq \mu$, to $ker(A-\lambda\mathbb{I} )\perp ker(A-\mu\mathbb{I})$.
+\end{stw}
+\begin{dowod}
+    (1)$\implies$(2).\\
+    \[
+    \underset{v\in V}{\forall} \left<v|A^*Av \right> = \left<v|AA^*v \right> \implies \Vert Av \Vert^2 = \Vert A^*v \Vert^2
+    .\]
+    (2)$\implies$(1).\\
+    \[
+        \Vert Av \Vert = \Vert A^*v \Vert \implies \left<v|(A^*A - AA^*)v \right> = 0 \underset{v\in V}{\forall}
+    .\]
+    Z tożsamości polaryzacyjnej $A^*A - AA^* = 0$. W szczególności $v\in ker(A-\lambda\mathbb{I}) \iff \Vert (A-\lambda\mathbb{I})v \Vert = 0 \iff \Vert (A-\lambda\mathbb{I})^*v \Vert = 0 = \Vert (A^* - \overline{\lambda}\mathbb{I})v \Vert \iff v\in ker(A^* - \overline{\lambda}\mathbb{I})$. $\lambda\left<u|v \right> = \left<u|Av \right> = \left<A^*u|v \right> = \left<\overline{\mu}u|v \right> = \mu \left<u|v \right>$, czyli $\left<u|v \right> = 0\quad\Box$
+\end{dowod}
+
+\subsection{Twierdzenie spektralne}
+\begin{tw}
+    Niech $(V,\left<.|. \right>)$ będzie przestrzenią unitarną oraz $A\in L(V)$ będzie operatorem normalnym. Wówczas $A$ posiada diagonalizującą, ortonormalną bazę złożoną z wektorów własnych $A$.
+\end{tw}
+\begin{dowod}
+    (indukcja ze względu na wymiar przestrzeni $V$).\\
+    Pierwszy krok indukcji $\dim V = 1$ - oczywiste. (Każdy operator w przestrzeni jednowymiarowej jest diagonalny bo to mnożenie przez skalar).\\
+    $n\implies n+1$. Zakładamy, że twierdzenie jest prawdziwe dla $\dim W = n$ i dla wszystkich operatorów normalnych na $W$. Niech $A\in L(V), \dim V = n+1$, $A$ - normalny. Skoro $V$ jest nad $\mathbb{C}$, to $w_A$ ma pierwiastek $\lambda_0\in\mathbb{C}$.\\
+    Niech $e_0\in V$ będzie wektorem własnym $A$ o wartości własnej $\lambda_0$ taki, że $\Vert e_0 \Vert = 1$.\\
+    Niech $X = \left<e_0 \right>^{\perp}$. Wtedy $\dim X = n$.\\
+    Uwaga: $\underset{x\in X}{\forall} Ax\in X $ oraz $A^*x\in X$.
+     \begin{align*}
+         &LHS: &&\left<e_0|a_x \right> = \left<A^*e_0|x \right> = \left<\overline{\lambda_0}e_0|x \right> = \lambda_0 \left<e_0|x \right> = 0\\
+         &RHS: &&\left<e_0|A^*x \right> = \left<Ae_0|x \right> = \overline{\lambda_0} \left<e_0|v \right> = 0
+    .\end{align*}
+    Niech $\tilde A = A|_{X}\in L(X)$.
+    Jeżeli $\tilde A$ jest operatorem normalnym na $X$ ($\dim X = n $ ),
+    %to biorąc $ \tilde \mathcal{E}$
+    %bazę $X$ ortonormalną wektorów własnych $\tilde A$ kończę dowód kładąc $\mathcal{E} = \left\{ e_0,\tilde e_1,\ldots,\tilde e_n \right\} $, gdzie $\tilde \mathcal{E} = \left\{ \tilde e_1,\ldots,\tilde e_n \right\} $
+
+    Normalność $\tilde A$. udowodnimy, że $\tilde A^* = A^*|_x$.\\
+    \begin{align*}
+        &\underset{x_1,x_2\in X}{\forall} : \left<x_1|\tilde Ax_2 \right> = \left<x_1 | A x_2 \right> = \left<A^* x_1 | x_2 \right> = \\
+        &= \left<A^*|_x x_1|x_2 \right> \implies \tilde A^* = A^*|_x
+    .\end{align*}
+    i w końcu $\tilde A^* \tilde A = A^* |_x A|_x = A^* A|_x = AA^*|_x = A|_xA^*|_x = \tilde A \tilde A^* \quad\Box$
+\end{dowod}
+
+\subsection{A teraz coś z zupełnie innej beczki}
+Ustalmy $u\in V$ i $X\subset V$ (podprzestrzeń wektorowa).\\
+Zdefiniujmy $\inf\limits_{x\in X} \Vert u-x \Vert  = dist(u,X)$
+
+\begin{stw}
+    Niech $P: V\to V$ będzie rzutem ortogonalnym na $X$. Wówczas $dist(u,X) = \Vert u - Pu \Vert $
+\end{stw}
+\begin{dowod}
+    $dist(u,X) \le \Vert u - Pu \Vert $, gdyż $Pu \in X$. Z drugiej strony,
+     \[
+         \underset{x\in X}{\forall} \Vert u-x \Vert ^2 = \Vert \underbrace{u- Pu}_{\in X^\perp} + \underbrace{Pu - x}_{\in X} \Vert ^2 = \Vert u - Pu \Vert ^2 + \Vert Pu - x \Vert ^2 \ge \Vert u - Pu \Vert ^2 \quad\Box
+    \]
+\end{dowod}
+
+\vspace{1cm}
+Odległość przestrzeni afinicznych\\
+
+$X_1\subset V, X_2\subset V$, $v_1,v_2\in V$ - $dist(v_1+X_1, v_2+X_2) = \inf\limits_{\substack{x_1\in X_1 \\ x_2\in X_2}} \Vert v_1+x_1-(v_2+x_2) \Vert = \inf\limits_{\substack{x_1\in X_1\\ x_2\in X_2}} \Vert v_1-v_2 + (x_2+x_1) \Vert  = \inf\limits_{y\in X_1+X_2}\Vert v_1-v_2 - y \Vert = \Vert v_1-v_2 - P_{X_1+X_2}(v_1-v_2) \Vert $,
+gdzie $P_{X_1+X_2}$ - rzut ortogonalny na $X_1+X_2$.
+
+\end{document}

@@ -1,0 +1,84 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{
+    {"../img/"}
+    {"img/"}
+}
+
+\begin{document}
+    $V$ - przestrzeń nad $\mathbb{C}$ z iloczynem skalarnym - tak było.\\
+    $A: V\to V$ takie, że $A^*A = AA^*$. Zachodzi tw. spektralne dla $A$.\\
+    Istnieje baza ortonormalna $V$ złożona z wektorów własnych $A$.\\
+
+    Drugie sformułowanie:
+    $ \left\{ \lambda_1,\ldots,\lambda_k \right\} = Sp(A) $, $V_i = \ker(A-\lambda \mathbb{I})$, $\mathcal{P}_i$ - rzuty ortogonalne na $V_i$.
+    Wtedy $\mathbb{I} = \sum_{i=1}^{i_k}\mathcal{P}_i \quad\&\quad A = \sum_{i=1}^{k}\lambda_i \mathcal{P}_i$.\\
+
+    \begin{tw}
+        (spektralne dla operatorów samosprzężonych na przestrzeni Euklidesowej, tzn. $V$ nad $\mathbb{R}, A:V\to V, A^* = A$)\\
+        \textbf{Lemat:} $W$ - przestrzeń zespolona z iloczynem skalarnym $\left<.|. \right>$. Niech $B: W\to W, B^* = B$. Wówczas $sp (B) \subset \mathbb{R}$
+        \begin{dowod}
+            $\lambda\in\mathbb{C},w\in W-\{0\}, Bw=\lambda w \overset{?}{\implies} \lambda\in\mathbb{R}$.\\
+            \begin{align*}
+                &\left<w|Bw \right> = \left<w|\lambda w \right> = \lambda \left<w|w \right>\\
+                &\left<Bw|w \right> = \left<\lambda w|w \right> = \overline{\lambda}\left<w|w \right> \implies\lambda = \overline{\lambda}
+            .\end{align*}
+            Wniosek $w_B(z)$ - wielomian charakterystyczny $B$. Pierwiastki $w_B$ są rzeczywiste.
+        \end{dowod}
+        $V, A:V\to V$ - jak wyżej, $V$ nad $\mathbb{R}^*, A^*=A$.\\
+        Istnieje baza ortonormalna $V$ wektorów własnych operatora $A$.
+    \end{tw}
+    \begin{dowod}
+        (indukcja ze względu na $\dim V$ )\\
+        1 krok indukcyjny - oczywiste.\\
+        $n\implies n+1$. Przypuśćmy, że $A$ posiada wektor własny $e_0$ o wartości własnej $\lambda_0\in\mathbb{R}$. Niech $X = \mathbb{R}\cdot e_0$.
+        Wówczas $A X\subset X$ - oczywiste. Mniej oczywiste jest to, że $A X^\perp \subset X^\perp$ - bo jeżeli $y\in X^\perp$, to $\left<Ay|e_0 \right> = \left<y|Ae_0 \right> = \lambda_0 \left<y|e_0 \right> = 0 \implies y\in X^\perp$.\\
+        Rozważmy operator $D = A|_{X^\perp}$ - obcięcie do $X$. Wówczas $D^* = D$. Zatem, skoro $\dim X^\perp = n$, to na mocy założenia indukcyjnego $X^\perp$ posiada ortonormalną bazę $\left\{ e_1,\ldots,e_n \right\} $ wektorów własnych operatora $B$. Wówczas $\left\{ e_0,\ldots,e_n \right\} $ jest ortonormalną bazą wektorów własnych operatora $A$.\\
+        Istnienie $\lambda_0\in \mathbb{R}$ i $e_0\in V$ - takiego jak wyżej:\\
+        Niech $\mathcal{F} = \left\{ f_0,\ldots,f_n \right\} $ będzie dowolną bazą ortonormalną przestrzeni $V$. Rozważmy macierz $\mathcal{A} = \left[ A \right] _\mathcal{F}^\mathcal{F}\in M_n(\mathbb{R})\subset M_n(\mathbb{C})$. Macierz $\mathcal{A}$ jest rzeczywista i symetryczna. Operator $T: \mathbb{C}^n\to \mathbb{C}^n$ taki, że $T x = \mathcal{A} x \underset{x\in \mathbb{C}}{\forall} $. Operator $T$ na $\mathbb{C}^n$, (gdzie iloczyn skalarny na $\mathbb{C}$ jest kanoniczny) jest samo sprzężony!\\
+        Wielomian charakterystyczny $T$ ma tylko rzeczywiste pierwiastki. Zauważmy, że $w_T(\lambda) = \det (\mathcal{A} - \lambda \mathbb{I}) = w_A(\lambda)$ a zatem $w_A$ ma rzeczywiste pierwiastki. Stąd wynika, że istnieje $\lambda_0,e_0$ j.w. $\quad\Box$
+    \end{dowod}
+
+    \subsection{Kwadryki}
+    Klasyfikacja (czyli co nam daje tw. spektralne w kontekście form np. kwadratowych) form kwadratowych na przestrzeni euklidesowej (rzeczywista z il. skalarnym).\\
+    $V, \dim V < \infty, Q:V\to \mathbb{R}$ - forma kwadratowa.\\
+    $\left<.|. \right>$ - iloczyn skalarny w przestrzeni $V$. Z $Q$ związana jest symetryczna forma $2$ liniowa $b: V\times V\to \mathbb{R}$, gdzie $Q(v) = b(v,v)$ (albo inaczej  $b(v_1,v_2) = b(v_2,v_1) = \frac{1}{2}\left(Q(v+w) - Q(v) - Q(w)\right)$).\\
+    Funkcjonały liniowe na $V$ są postaci: ustalamy $\tilde v\in V$ i definiujemy funkcjonał $\left<\tilde v|\in V^* \right.$, gdzie $\left<\tilde v\right|(v) \overset{\text{def}}{=} \left<\tilde v|v \right> $.\\
+    Ustalmy $w'\in V$ i rozważmy funkcjonał $b(w,\cdot )$. Istnieje $\tilde w\in W$ taki, że $b(w,v) = \left<\tilde w|v \right>\underset{v\in V}{\forall} $.\\
+    Powyższe definiuje operator $F: V\to V$, gdzie $F w = \tilde w$.\\
+    Czyli $b(w,v) = \left<Fw|v \right> \underset{w,v\in V}{\forall} $.
+
+    \vspace{0.5cm}
+    \noindent\textbf{Lemat:} $F$ - samosprzężony.
+    \begin{dowod}
+        $\left<Fw|v \right> = b(w,v) = b(v,w) = \left<Fv|w \right>$, zatem $F = F^*\quad\Box$
+    \end{dowod}
+    Niech $\left\{ e_1,\ldots,e_n \right\} $ będzie bazą ortonormalną przestrzeni $V$. Zauważmy, że $\left[ F \right] _\mathcal{E}^\mathcal{E} = \left< e_j|Fe_i \right>_{i,j = 1,\ldots,n} = b(e_i,e_j)_{i,j = 1,\ldots,n}$.\\
+    Jeśli w szczególności $\mathcal{E}$ - ortonormalna baza złożona z wektorów własnych $F$, to w tej bazie $\left[b\right]_\mathcal{E}$ jest diagonalne. Niech $\left\{ \phi_1,\ldots,\phi_n \right\} $ - współrzędne ortogonalne związane z bazą $\mathcal{E}$. Wtedy $\sum_{i=1}^k \lambda_i\phi_i^2 = Q$, gdzie $\lambda_1,\ldots,\lambda_k$ są niezerowymi wartościami własnymi $F$. Niech $sgn Q = (p,q)$. Wtedy istnieją $a_1 \ge a_2 \ge \ldots \ge a_p \quad\&\quad a_{p+1}\ge\ldots\ge a_{p+q}$ takie, że
+    \[
+        Q = \sum_{i=1}^p \frac{\phi_i^2}{a_i^2} - \sum_{i=1}^q \frac{\phi_{p+1}^2}{a_{p+1}^2} (**)
+    .\]
+    \begin{definicja}
+        Mówimy, że (**) jest postacią kanoniczną formy kwadratowej $Q$.
+    \end{definicja}
+    \begin{definicja}
+        $Q_1,Q_2: V\to \mathbb{R}$ mają tę samą postać kanoniczną, jeżeli istnieją współrzędne ortonormalne $\left\{ \phi_1,\ldots,\phi_n \right\} , \left\{ \psi_1,\ldots,\psi_n \right\} $ takie, że
+        \[
+            Q_1 = \sum_{i=1}^p \frac{\phi_i^2}{a_i^2} - \sum_{i=1}^q \frac{\phi_{p+i}^2}{a_{p+i}^2} \quad\&\quad Q_2 = \sum_{i=1}^p \frac{\psi_i^2}{a_i^2} - \sum_{i=1}^q \frac{\psi_{p+i}^2}{a_{p+1}^2}
+        .\]
+    \end{definicja}
+    \begin{definicja}
+        $V$ nad $\mathbb{R}, T:V\to V$ - operator taki, że $T^* = T^{-1}$. Wówczas mówimy, że $T$ jest operatorem ortogonalnym.
+    \end{definicja}
+    Uwaga: $T$ jest ortogonalny jeżeli mamy:\\
+    $\mathcal{E} = \left\{ e_1,\ldots,e_n \right\} $ - baza ortonormalna $\implies$ $\left\{ Te_1,\ldots,Te_n \right\} $ - baza ortonormalna.\\
+    \begin{align*}
+        \left<Te_i|Te_j \right> = \left<e_i|T^*Te_j \right> = \left<e_i|e_j \right> = \delta_{ij}
+    .\end{align*}
+    \begin{stw}
+        Formy kwadratowe $Q_1,Q_2$ mają tę samą postać kanoniczną $\iff$ istnieje operator ortogonalny $T:V\to V$ taki, że $Q_2(v) = Q_1(Tv)$
+    \end{stw}
+    \begin{dowod}
+        Jeśli $Q_1,Q_2$ mają tę samą postać kanoniczną, to definiujemy $T:V\to V$ następująco:  niech $\left\{ e_1,\ldots,e_n \right\} $ - baza ortonormalna związana z $\left\{ \phi_1,\ldots,\phi_n \right\} $ i $\left\{ f_1,\ldots,f_n \right\} $ z $\left\{ \psi_1,\ldots,\psi_n \right\} $. Niech $Te_i = f_i$ - daje  $Q_2(v) = Q_1(Tv)$.\\
+        Na odwrót: jeśli $Q_2(v) = Q_1(Tv)$ i w bazie $\left\{ e_1,\ldots,e_n \right\} $, $Q_1$ ma postać kanoniczną to definiując $f_i: e_i :=T f_i$ dostajemy bazę  $\left\{f_1,\ldots,f_n\right\} $ ortonormalną i postac kanoniczna $Q_2$ w bazie $\left\{ f_1,\ldots,f_n \right\} $ jest taka $Q_1$ w $\left\{ e_1,\ldots,e_n \right\} \quad\Box$
+    \end{dowod}
+\end{document}
