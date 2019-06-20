@@ -1,0 +1,122 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{
+    {"../img/"}
+    {"img/"}
+}
+
+\begin{document}
+\subsection{Macierz Grama układu wektorów}
+Weźmy $V$ - nad $\mathbb{R}$. Mamy tutaj iloczyn skalarny $\left<.|. \right>$. Ustalamy wektory $v_1,\ldots,v_k$ - liniowo niezależne.\\
+niech \[
+x = \sum_{i=1}^k x^iv_i,\quad \left<x|x \right> = \sum_{i,j}x^i\left<v_i|v_j \right>x^j
+.\]
+\begin{definicja}
+    Macierzą Grama układu wektorów $v_1,\ldots,v_k$ nazywamy macierz
+    \[
+        \left[ \left<v_i|v_j \right> \right] \overset{\text{ozn}}{=}  G(v_1,\ldots,v_k)
+    .\]
+\end{definicja}
+    Ustalmy wektor $v\in V$, odległość wynosi $dist\left( v,\left<v_1,\ldots,v_k \right> \right) = \Vert (1-P)v \Vert$, gdzie $P$ - rzut ortogonalny na $\left<v_1,\ldots,v_k \right>$.\\
+    Niech $P v = \sum_{i=1}^k x^i v_i$. Zauważmy, że
+    \[
+        \left<v_i|v \right> = \left<v_i|P v \right> + \left<v_i|(1-P)v \right> = \left<v_i | P v \right> = \sum x^j \left<v_i|v_j \right>
+    .\]
+    Oznaczmy $\delta = dist\left(v,\left<v_1,\ldots,v_k \right>\right)$. \\
+    \begin{align*}
+        \delta^2 = \left<(1-P)v|(1-P)v \right> = \left<v|(1-P)v \right> - \left<P v|(1-P) v \right> = \left<v|v \right> - \sum_{j=1}^k \left<v|v_j \right>x^j
+    .\end{align*}
+    Macierzowy zapis:
+    \begin{align*}
+        \begin{bmatrix} \left<v_1|v_1 \right>&\left<v_1|v_2 \right>&\ldots&\left<v_1|v_k \right>&\left<v_1|v \right> \\
+            \left<v_2|v_1 \right>&\ldots&&\left<v_2|v_k \right>&\left<v_2|v \right>\\
+            \vdots\\
+            \left<v|v_1 \right>&\ldots&&\left<v|v_k \right> &\left<v|v \right>-\delta^2\end{bmatrix} \begin{bmatrix} x^1\\ \vdots \\ x^k \\ 1 \end{bmatrix} = \begin{bmatrix} 0 \end{bmatrix}
+    .\end{align*}
+    Zatem wyznacznik powyższej macierzy jest równy zero. Z liniowości wyznacznika względem ostatniej kolumny mamy:
+     \begin{align*}
+         0 = \det G(v_1,\ldots,v_k,v) - \delta^2 \det (G(v_1,\ldots,v_k))
+    .\end{align*}
+    Zatem
+    \[
+        \delta = \left(\frac{\det G(v_1,\ldots,v_k,v)}{\det G(v_1,\ldots,v_k)}\right)^{\frac{1}{2}}
+    .\]
+    \begin{definicja}
+        Niech $(v_1,\ldots,v_k)\in V$ jw. Objętością równoległościanu rozpiętego przez $\left( v_1,\ldots,v_k \right) $ definiujemy indukcyjnie:
+        \[
+            vol(v_1,\ldots,v_k) \overset{\text{def}}{=} vol(v_1,\ldots,v_{k-1}) \cdot d(v_k,\left<v_1,\ldots,v_{k-1} \right>)
+        .\]
+        \[
+            vol(v_1) = \Vert v_1 \Vert
+        .\]
+    \end{definicja}
+    \begin{stw}
+        Zachodzi równość
+        \[
+            vol(v_1,\ldots,v_k) = \det(G(v_1,\ldots,v_k))^{\frac{1}{2}}
+        .\]
+    \end{stw}
+    \begin{dowod}
+        (indukcyjny)\\
+        Jeden wektor: $vol(v_1) = \Vert v_1 \Vert = \det(G(v_1))^{\frac{1}{2}}$, $\det \left<v_1|v_1 \right>^{\frac{1}{2}}$ - długość wektora $v_1$.\\
+        Krok indukcyjny: $k\implies k+1$\\
+        \begin{align*}
+            &vol(v_1,\ldots,v_k,v_{k+1}) = vol(v_1,\ldots,v_k)\cdot dist(v_{k+1},\left<v_1,\ldots,v_k \right>)=\\
+            &=\det (G(v_1,\ldots,v_k))^{\frac{1}{2}}\cdot dist(\ldots) = \det G(v_1,\ldots,v_{k+1})^{\frac{1}{2}}\quad\Box
+        .\end{align*}
+    \end{dowod}
+
+\subsection{Powierzchnie kwadratowe}
+Klasyfikacja powierzchni kwadratowych.
+\begin{przyklad}
+    $\left\{ x\in \mathbb{R}^3: x_1^2 - x_2^2 + x_3^2 - 4x_1x_3 + 6x_1x_2 + 10x_2x_3 = 1 \right\} $, $Q = \begin{bmatrix} 1&3&-2\\3&-1&5\\-2&5&1 \end{bmatrix} $.\\
+    \[
+        S = \left\{ x\in \mathbb{R}: Q(x) = 1 \right\}
+    .\]
+\end{przyklad}
+\begin{definicja}
+    Niech $V$ - przestrzeń, $\left<.|. \right>$ - iloczyn skalarny oraz $Q: V\to \mathbb{R}$ - forma kwadratowa, $c\in \mathbb{R}$.\\
+    Powierzchnie $S$ postaci $S = \left\{ x\in V: Q(x) = c \right\} $ nazywamy powierzchnią kwadratową typu
+    \begin{itemize}
+        \item I jeśli $c\neq 0$
+        \item II jeśli $c = 0$
+    \end{itemize}
+\end{definicja}
+Uwaga: jeśli $c\neq 0$, to bez straty ogólności możemy założyć, że $c = 1$.
+\begin{definicja}
+    Mówimy, że dwie powierzchnie $S_1,S_2$ kwadratowe mają taki sam kształt, jeśli istnieje odwzorowanie ortogonalne $T: V\to V$ takie, że $S_2 = T S_1$.
+\end{definicja}
+Przypomnienie: postać kanoniczna formy kwadratowej.\\
+\[
+    Q = \sum_{i=1}^p \frac{\phi_i^2}{a_i^2} - \sum_{i=1}^q \frac{\phi_{i+p}^2}{a_{i+p}^2},\quad (p,q) = sgn(Q)
+.\]
+$\left( \phi_1,\ldots,\phi_{p+q} \right) $ - współrzędne ortonormalne na $V$.\\
+$Q_1$ i $Q_2$ mają tę samą postać kanoniczną, to istnieje $T: V\to V$ takie, że $Q_2 = Q_1 \cdot T$. Wówczas $S_1 = \left\{ x\in V: Q_1(x) = c \right\} ,\quad S_2 = \left\{ x\in V: Q_2(x) = c \right\} $ mają ten sam kształt: $S_2 = \left\{ x\in V: Q_1(T x) = c \right\} = \left\{ x\in V: T x\in S_1 \right\} = T^{-1}S_1 \implies S_1 = TS_2$
+\begin{tw}
+    $Q_1,Q_2: V\to \mathbb{R}, S_i = \left\{ x\in V: Q_i(x) = 1 \right\} i = 1,2$. Jeżeli $S_1 = S_2$, to $Q_1 = Q_2$
+\end{tw}
+\begin{dowod}
+    Ustalmy $i = 1$ oraz rozważmy $\left\{ x\in V: Q_1(x) > 0 \right\} $. Zauważmy, że $\underset{x\in S_1}{\forall}$ oraz $t>0$, $t\cdot x\in \mathcal{O}$, gdyż $Q_1(tx) = t^2Q_1(x) = t^2 >0$.\\
+    Na odwrót, jeżeli $y\in \mathcal{O}$, to $\frac{y}{\sqrt{Q_1(y)}}\in S_1$. ($Q(\frac{y}{\sqrt{Q(y)}}) = \frac{Q(y)}{Q(y)} = 1$).
+
+    Widzimy zatem, że:
+    \[
+    1. \mathcal{O} = \mathbb{R}_{>0}S_1
+    ,\]
+    2. Wartość $Q_1$ na $\mathcal{O}$ jest wyznaczona przez wartości na  $S_1$, gdyż $Q_1(tx) = t^2\quad \underset{x\in S_1}{\forall} $.\\
+    Skoro $\mathcal{O}$ jest zbiorem otwartym a funkcja $f: \mathcal{O}\to \mathbb{R}$ taka, że $f(x) = Q_1(x)$ jest różniczkowalna oraz $f''(x) = Q_1(x) \underset{x\in V}{\forall}$, to widzimy, że znajomość $S_1$ pozwala odtworzyć $Q_1\quad\Box$
+\end{dowod}
+Uwaga: można pokazać, że powierzchnia kwadratowa typu II (generycznie) odtwarza $Q$ z dokładnością do stałej multiplikatywnej.\\
+Terminologia: niech $\dim V = 3$.\\
+powierzchnia typu  I:
+\begin{align*}
+    &\frac{\phi_1^2}{a_1^2}+ \frac{\phi_2^2}{a_2^2}+\frac{\phi_3^2}{a_3^2} = 1 \text{ - elipsoida} (3,0)\\
+    &\frac{\phi_1^2}{a_1^2}+ \frac{\phi_2^2}{a_2^2}-\frac{\phi_3^2}{a_3^2} = 1 \text{ - hiperboloida jednopowłokowa} (2,1)\\
+    &\frac{\phi_1^2}{a_1^2}- \frac{\phi_2^2}{a_2^2}-\frac{\phi_3^2}{a_3^2} = 1 \text{ - hiperboloida dwupowłokowa} (1,2)\\
+.\end{align*}
+powierzchnia typu II:
+\begin{align*}
+    &\frac{\phi_1^2}{a_1^2}+\frac{\phi_2^2}{a_2^2}+\frac{\phi_3^2}{a_3^2} = 0 \text{ - punkt}(3,0)\\
+    &\frac{\phi_1^2}{a_1^2}+\frac{\phi_2^2}{a_2^2}-\frac{\phi_3^2}{a_3^2} = 0 \text{ - stożek eliptyczny}(2,1)\\
+    &\frac{\phi_1^2}{a_1^2}-\frac{\phi_2^2}{a_2^2}-\frac{\phi_3^2}{a_3^2} = 0 \text{ - punkt}(1,2)\\
+.\end{align*}
+\end{document}
