@@ -1,0 +1,116 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{
+    {"../img/"}
+    {"img/"}
+}
+
+\begin{document}
+$V$ - przestrzeń z iloczynem skalarnym nad $\mathbb{F}$. ($\mathbb{R}$ - przestrzeń euklidesowa, $\mathbb{C}$ - przestrzeń unitarna)
+\subsection{Ortogonalizacja G-S}
+uwaga: $\mathcal{E} = \left\{ e_1,\ldots,e_n \right\} $ - baza ortonormalna, $A\in L(V)$, $[a_{ij}] = [A]_\mathcal{E}$.\\
+\[
+a^i_j = \left<e_i|Ae_j \right>
+.\]
+\begin{align*}
+    &A e_j = \sum_l a^l_j e_l\\
+    &\left<e_i | Ae_j \right> = \sum_l \left<e_i | e_l \right> a^l_j = a^i_j
+.\end{align*}
+\subsection{Funkcjonały liniowe $\underset{1-d}{\leftrightarrow}$ wektory}
+$\varphi_v(w) = \left<v|w \right>$
+\begin{stw}
+    (Tożsamość polaryzacyjna)
+
+    $\mathbb{F} = \mathbb{C}$. $\frac{v}{\mathbb{C}} = \Vert v+i^k w \Vert ^2$
+    \[
+        \underset{v,w\in V}{\forall} , \left<w|v \right> = \frac{1}{4} \sum_{k=0}^3 i^k \left<v+i^k w| v+i^k w \right>
+    .\]
+\end{stw}
+\begin{dowod}
+    \begin{align*}
+        &k=0 &&\left<v+w|v+w \right> = \left<v|v \right> + \left<w|w \right>+\left<v|w \right>+\left<w|v \right>\\
+        &k = 1 && i\left<v+iw | v+iw\right> = i \left( \left<v|v \right> + \left<w|w \right> + i\left<v|w \right> - i\left<w|v \right> \right)\\
+        &k = 2 && -\left<v-w|v-w \right> = -\left<v|v \right> - \left<w|w \right> + \left<v|w \right> + \left<w|v \right>\\
+        &k = 3 && -i \left<v-iw|v-iw \right> = -i \left( \left<v|v \right> + \left<w|w \right> - i\left<v|w \right> + i\left<w|v \right> \right)
+    .\end{align*}
+    \[
+    \sum_{k=0}^3 i^k \left<v+i^k w | v + i^k w \right> = 4\left<w|v \right>\quad\Box
+    \]
+    Uwaga: w ten sam sposób pokazujemy, że $\underset{A\in L(V)}{\forall} \left<w|Av \right> = \frac{1}{4}\sum i^k \left<v+i^kw|A(v+i^kw) \right>(*)$
+\end{dowod}
+Wniosek: Jeżeli $A\in L(V)$ spełnia $\left<x|Ax \right> = 0$ dla wszystkich $x\in V$, to $A \equiv 0$.\\
+Rzeczywiście z  $(*) \implies \left<w|Av \right> = 0$, kładziemy $w = Av$ i $\left<Av|Av \right> = \Vert Av \Vert ^2 = 0 \implies Av = 0 \underset{v\in V}{\forall} $
+\subsection{Sprzężenie hermitowskie operatora}
+$V,W$ - przestrzenie z iloczynem skalarnym nad ciałem $\mathbb{F} = \mathbb{R}$ lub $\mathbb{C}$. Niech $A\in L(V,W)$.\\
+Ustalmy wektor $w\in W$ i rozważmy funkcjonał liniowy
+\[
+    V \ni v \to \left<w|Av \right> \in \mathbb{F} \text{ (na p-ni $V$) }
+.\]
+\[
+\underset{\tilde w\in V}{\exists} : \left<w|Av \right> = \left<\tilde w|v \right> = \left<A^* w | v \right>
+.\]
+Zauważmy, że $w_1,w_2\in W, \lambda,\mu \in \mathbb{F}$, to
+\begin{align*}
+    &\left< \lambda_1w_1+\lambda_2w_2|v\right> = \left<\lambda_1w_1+\lambda_2w_2 | Av \right> = \overline{\lambda}_1 \left<w_1|Av \right> + \overline{\lambda}_2 \left<w_2|Av \right> =\\
+    &=\overline{\lambda}_1 \left<\tilde w_1|v \right> + \overline{\lambda}_2 \left<\tilde w_2|v \right> = \left<\lambda_1\tilde w_1 + \lambda_2\tilde w_2|v \right>. \underset{v\in V}{\forall}\\
+    &\lambda_1w_1 + \lambda_2w_2 = \lambda_1\tilde w_1 + \lambda_2\tilde w_2
+.\end{align*}
+Zatem odwzorowanie $W\ni w \to \tilde w\in V$ jest liniowe. Oznaczenie $\tilde w = A^* w$.\\
+$A^*$ nazywamy sprzężeniem hermitowskim $A$.\\
+Wyrażenie w bazie ortonormalnej $\mathcal{E} = \left\{ e_1,\ldots,e_n \right\} $ - baza $V$, $\mathcal{F} = \left\{ f_1,...,f_m \right\} $ - baza $W$. $[a_{ij}] = [A]_\mathcal{E}^\mathcal{F}$. $b_{ji}\in [A^*]_\mathcal{F}^\mathcal{E}$.
+\[
+    b_{ji} = \left<e_j | A^*f_i \right> = \left<A e_j | f_i \right> = \overline{\left<f_i|A e_j \right>} = \overline{a_{ij}}
+.\]
+\subsection{Notacja Diraca}
+\[
+    \underset{\text{bracket}}{\left<v|w \right>} \to \underset{\text{bra}}{\left< v \right|}, \underset{\text{ket}}{\left| w \right>}, \left|v\right>\left<w\right| \leftarrow \text{ ket bra (XD)}
+.\]
+$\left<v \right|$ - z definicji oznacza funkcjonał liniowy.\\
+$v \ni \left|w \right> \overset{\left<v \right|}{\to} \left<v|w \right>\in \mathbb{C} $.\\
+$\left|v \right>\left<w \right|: v\to v$ - liniowe odwzorowanie takie, że
+\[
+    \left|v \right>\left<w \right|(u) = \left|v \right>\left<w|u \right>: \underset{\text{stara notacja}}{\to} \left<w|u \right> v
+.\]
+\[
+    \left( \left|v \right>\left< w\right| \right) ^* = \left|w \right>\left<v \right|
+.\]
+Niech $A = \left|v \right>\left<w \right|$, $B = \left|w \right>\left<v \right|$.
+
+\begin{align*}
+    &\left<u_1|Au_2 \right> = \left<u_1|v \right>\left<w|u_2 \right> = \left<\overline{\left<u_1|v \right>}w|u_2 \right> =\\
+    &= \left<\left<v|u_1 \right>w|u_2 \right> = \left<\left|w \right>\left<v|u_1 \right>\left|u_2 \right> \right> = \left<Bu_1|u_2 \right>
+.\end{align*}
+Zatem $A^* = B, \left|v \right>\left< w\right|^* = \left|w \right>\left<v \right|$.
+Dalsze reguły:\\
+$\left|v \right>^* = \left<v \right|, \left<v \right|^* = \left|v \right>$.
+
+Uwaga: rozkład jedności: $\mathcal{E} = \left\{ e_1,\ldots,e_n \right\} $ - baza ortonormalna taka, że $\mathbb{I}_V = \sum_{i=1}^n \left|e_i \right>\left<e_i \right|$.
+\[
+\sum_{i=1}^n \left|e_i \right>\left<e_i|v \right> = v
+.\]
+
+\subsection{Własności hermitowskeigo sprzężenia}
+$\left<A^*w|v \right> = \left<w|Av \right>$.
+
+\begin{align*}
+    &1. &&A^{**} = A\\
+    &2. &&\left( \lambda A + \mu B \right) ^* = \overline{\lambda}A^* + \overline{\mu} B^*\\
+    &3. &&\left( D C \right) ^* = C^* D^*, C: V\to W, D: W\to U
+.\end{align*}
+$\left<u|DC v \right> = \left<D^* u | C v \right> = \left<C^* D^* u | v \right>$
+\begin{definicja}
+    Niech $A\in L(V)$. Mówimy (1), że $A$ jest samosprzężona jeżeli $A^* = A$, (2), że $A$ jest unitarna, jeżeli $A^* = A^{-1}$, (3) że $A$ jest normalna jeżeli $A^*A = AA^*$.
+\end{definicja}
+Uwaga: $1\to 3, 2\to 3$
+\begin{przyklad}
+    $\mathbb{C}^2$ z iloczynem kawniczym $\left<\begin{bmatrix} v_1\\v_2 \end{bmatrix} | \begin{bmatrix} w_1\\w_2 \end{bmatrix}  \right> = \overline{v}_1 w_1 + \overline{v}_2 w_2$ \\
+    \[
+        \begin{bmatrix} a&b\\c&d \end{bmatrix}^* = \begin{bmatrix} \overline{a} & \overline{c} \\ \overline{b} & \overline{d} \end{bmatrix} = A^*
+,\]
+gdzie $A = \begin{bmatrix} A&b\\c&d \end{bmatrix} $, $A^* = A \iff A = \begin{bmatrix} x&u\\ \overline{u} & y \end{bmatrix} , x,y\in \mathbb{R}, u\in \mathbb{C}$.\\
+Unitarność: $A^{-1} = \frac{1}{ad-bc}\begin{bmatrix} d&-b\\-c&a \end{bmatrix} = \begin{bmatrix} \overline{a}&\overline{c}\\ \overline{b} & \overline{d} \end{bmatrix} = A^*$, w szczegółności gdy $\det A = 1$, to unitarność
+\[
+    A = \begin{bmatrix} \overline{a} & b \\ -\overline{b} & \overline{a} \end{bmatrix} , |a|^2 + |b|^2 = 1, a,b\in \mathbb{C}
+.\]
+\end{przyklad}
+
+\end{document}
