@@ -37,12 +37,12 @@ Z twierdzenia Lagrange'a wiemy, że istnieją współrzędne na $\mathbb{R}^2$, 
         \phi_1(v) = 0\\
         \vdots\\
         \phi_{r'}(v) = 0\\
-        \phi_{r'+1}(v) = 0\\
+        \psi_{r+1}(v) = 0\\
         \vdots\\
-        \phi_{r+s}(v) = 0
+        \psi_{r+s}(v) = 0
     \end{cases}
 .\]
-    Mamy $r'+s < n$ równań na wektor $v$ w przestrzeni wymiaru $n$. Istnieje wektor $V\neq 0$ spełniający ten układ równań. Zatem
+    Mamy $r'+s < n$ równań na wektor $v$ w przestrzeni wymiaru $n$. Istnieje wektor $v\neq 0$ spełniający ten układ równań. Zatem
     \[
         \varphi(v) = \psi_1(v)^1 + \ldots + \psi_r(v)^2 = -\phi_{r'+1}(v)^2 - \ldots - \phi_{r'+s'}(v)^2 = 0
     .\]
@@ -67,7 +67,7 @@ Z twierdzenia Lagrange'a wiemy, że istnieją współrzędne na $\mathbb{R}^2$, 
     $D_l = \det \begin{bmatrix} \varphi_{11}&\ldots&\varphi_{1l}\\
     \vdots&\ddots&\vdots\\\varphi_{l2}&\ldots&\varphi_{ll}\end{bmatrix} \underset{\text{zał}}{\neq} 0$
 
-    Rozważmy wektory $f_1,\ldots,f_n$, gdzie $f_1 = e_1 \&$ dla $i>1,\quad f_i = \frac{1}{D_{i-1}} \det \begin{bmatrix} \varphi_{11}&\ldots&\varphi_{1i}\\ \vdots \\ \varphi_{i-n, 1}&\ldots&\varphi_{i-n, i}\\ e_1& \ldots& e_i \end{bmatrix}$
+    Rozważmy wektory $f_1,\ldots,f_n$, gdzie $f_1 = e_1 \&$ dla $i>1,\quad f_i = \frac{1}{D_{i-1}} \det \begin{bmatrix} \varphi_{11}&\ldots&\varphi_{1i}\\ \vdots \\ \varphi_{i-1, 1}&\ldots&\varphi_{i-1, i}\\ e_1& \ldots& e_i \end{bmatrix}$
     \begin{przyklad}
         \[
             f_2 = \frac{1}{D_1} \det \begin{bmatrix} \varphi_{11}&\varphi_{12}\\e_1&e_2 \end{bmatrix} = \frac{1}{e_{11}}(\varphi_{11}e_2 - \varphi_{12}e_1) = e_2 - \frac{\varphi_{12}}{\varphi_{11}}e_1
